@@ -18,7 +18,7 @@ git config --global user.name "Ton nom"<br/>
 2 : git pull https://github.com/YoshiYo/seeit.git<br/>
 3*: git remote add origin https://github.com/YoshiYo/seeit.git<br/>
 3 : Faites vos modifs<br/>
-4 : commit -am "Ce que vous avez modifiés et apporter en résumé"<br/>
+4 : git commit -am "Ce que vous avez modifiés et apporter en résumé"<br/>
 5 : git push -u origin master<br/>
 
 Enjoy it.
