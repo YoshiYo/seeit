@@ -1,0 +1,12 @@
+{
+    "name": "YoshiYo/seeit",
+    "authors": [
+        {
+            "name": "Guillaume Forgue",
+            "email": "guillaume.forgue@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "~2.4"
+    }
+}
