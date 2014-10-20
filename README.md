@@ -7,7 +7,7 @@ Les commandes à suivre ( en se placant aussi dans /www/seeit ) :<br/>
 1 : composer init<br/>
 2 : composer search slim<br/>
 3 : composer require slim/slim <br/>
-4 : composer install slim/slim <br/><br/><br/>
+
 
 <h1>Ensuite on lance gitbash : </h1><br/>
 
