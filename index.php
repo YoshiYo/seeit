@@ -13,3 +13,5 @@
   });
 
   $app->run();
+
+  echo 'Notre premier test github - master';
