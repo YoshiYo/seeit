@@ -1,7 +1,7 @@
 <h1> Les commandes à connaitre : </h1>
 
 
-On crée un dossier seeit dans /www </br>
+On crée un dossier seeit dans /www <br/>
 On utilise le cmd avec composer pour installer slim. </br>
 Les commandes à suivre ( en se placant aussi dans /www/seeit ) :</br>
 1 : composer init</br>
