@@ -1,9 +1,9 @@
-<h1> Les commandes à connaitre : </h1>
+<h1> Les commandes ï¿½ connaitre : </h1>
 
 
-On crée un dossier seeit dans /www <br/>
+On crï¿½e un dossier seeit dans /www <br/>
 On utilise le cmd avec composer pour installer slim. <br/>
-Les commandes à suivre ( en se placant aussi dans /www/seeit ) :<br/>
+Les commandes ï¿½ suivre ( en se placant aussi dans /www/seeit ) :<br/>
 1 : composer init<br/>
 2 : composer search slim<br/>
 3 : composer require slim/slim <br/>
@@ -18,10 +18,10 @@ git config --global user.name "Ton nom"<br/>
 2 : git pull https://github.com/YoshiYo/seeit.git<br/>
 3*: git remote add origin https://github.com/YoshiYo/seeit.git<br/>
 3 : Faites vos modifs<br/>
-4 : git commit -am "Ce que vous avez modifiés et apporter en résumé"<br/>
+4 : git commit -am "Ce que vous avez modifiï¿½s et apporter en rï¿½sumï¿½"<br/>
 5 : git push -u origin master<br/>
 
-Enjoy it.
+Enjoy it and share and have fun and smile, peace.
 
 
 
