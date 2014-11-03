@@ -1,6 +1,6 @@
 <?php
 	
-include('connexion_bdd.php');	
+include('bdd.php');	
 
 if(!empty($_POST['Envoyer']))
 {       
@@ -28,7 +28,7 @@ if(!empty($_POST['Envoyer']))
 				$columns = $result->fetch();
 				 $_SESSION['first_name'] = $_POST["first_name"] ;
 				 $_SESSION['id'] = $_POST["utilisateur_id"] ;
-				 header('location:index.php') ;
+				 header('location:../index.php') ;
 				 
 
 			

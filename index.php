@@ -13,6 +13,21 @@
     <li class="name">
       <h1><a href="#">My Site</a></h1>
     </li>
+	<?php
+	session_start();
+
+if ( !empty($_SESSION) )
+	{
+		echo "<h4>Bonjour ".$_SESSION['utilisateur']. "</h4>" ;
+		echo '<a href="deconnexion.php" > DECONNEXION</a>' ;
+	
+	} else {
+	echo ' ' ;
+	}
+	
+	  echo "<a href='model/inscription.php'>INSCRIPTION</a></br>";
+  echo "<a href='model/connexion.php'>CONNEXION</a></br>";
+	?>
      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>

@@ -1,6 +1,6 @@
 <?php
 
-include('connexion_bdd.php') ;
+include('bdd.php') ;
 
 if(!empty($_POST["envoyer"]))
 	{
@@ -24,7 +24,7 @@ if(!empty($_POST["envoyer"]))
 					$_SESSION['nom'] = $columns['last_name'] ;	
 					$_SESSION['utilisateur'] = $columns['first_name']. ' '.$columns['last_name'];
 					$_SESSION['user_id'] = $columns['user_id'];		
-					header('location:index.php') ;
+					header('location:../index.php') ;
 				}
 				else
 				{					
