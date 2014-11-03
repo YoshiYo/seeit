@@ -26,6 +26,7 @@ if(!empty($_POST['Envoyer']))
 											':password'=>$password
 									));
 				$columns = $result->fetch();
+				$_SESSION['utilisateur'] = $columns['first_name']. ' '.$columns['last_name'];
 				 $_SESSION['first_name'] = $_POST["first_name"] ;
 				 $_SESSION['id'] = $_POST["utilisateur_id"] ;
 				 header('location:../index.php') ;
