@@ -11,6 +11,8 @@
   $app->get('/hello/:name', function ($name) {
     echo "Hello, $name";
   });
+  
+  echo "nard";
 
   $app->run();
 
