@@ -25,8 +25,6 @@ if ( !empty($_SESSION) )
 	echo ' ' ;
 	}
 	
-	  echo "<a href='model/inscription.php'>INSCRIPTION</a></br>";
-  echo "<a href='model/connexion.php'>CONNEXION</a></br>";
 	?>
      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -72,6 +70,8 @@ if ( !empty($_SESSION) )
   echo 'Notre premier test github - master';
   echo 'Coucou cest Auguste';
 
+	echo "<a href='model/inscription.php'>INSCRIPTION</a></br>";
+  echo "<a href='model/connexion.php'>CONNEXION</a></br>";
 ?>
 
     </body>
