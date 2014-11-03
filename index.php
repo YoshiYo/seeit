@@ -12,7 +12,6 @@
     echo "Hello, $name";
   });
   
-  echo "nard";
 
   $app->run();
 
