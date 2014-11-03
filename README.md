@@ -1,4 +1,4 @@
-<h1> Les commandes � connaitre : </h1>
+<h1> Les commandes � connaitre trés bien : </h1>
 
 
 On cr�e un dossier seeit dans /www <br/>
