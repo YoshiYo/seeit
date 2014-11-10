@@ -44,18 +44,7 @@ if(!empty($_POST['Envoyer']))
 
 ?>
 
-<! DOCTYPE HTML>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" media="screen" type="text/css" href="../styles/styleinscription.css" />
-		<link rel="stylesheet" media="screen" type="text/css" href="styles/style2.css" />
 
-		<link href='http://fonts.googleapis.com/css?family=Roboto:100,300,400' rel='stylesheet' type='text/css'/>
-	</head>
-	
-	<body>
-	
 	
 		<div class="arrondi">
 			<h1 align="center" > INSCRIPTION </h1>
@@ -75,9 +64,4 @@ if(!empty($_POST['Envoyer']))
 		</div>
 	</form></fieldset>
 	</form>
-		</div>
-	
-	
-	</body>
-	
-</html>
+	</div>
