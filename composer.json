@@ -8,5 +8,6 @@
     ],
     "require": {
         "slim/slim": "~2.4"
+	"petebrowne/slim-layout-view"
     }
 }
