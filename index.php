@@ -21,11 +21,7 @@
   });
 
    $app->get('/connexion', function () use ($app) {
-    $app->render('connexion.php');
-  });
-
-     $app->get('/inscription', function () use ($app) {
-    $app->render('inscription.php');
+    $app->render('authentification/connexion.php');
   });
 
   
