@@ -6,6 +6,8 @@
     <title>Foundation | Welcome</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/sphere.js"></script>
   </head>
   <body>
 
