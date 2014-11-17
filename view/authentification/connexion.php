@@ -1,6 +1,6 @@
 <?php
 
-require_once "/autoload.inc.php";
+/*require_once "/autoload.inc.php";
 
 if(isset($_POST['envoyer']))
 {
@@ -10,7 +10,7 @@ if(isset($_POST['envoyer']))
 	$unuser = new user($mail, $password);
 
 	$unuser->connexion();
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html>
