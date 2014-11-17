@@ -1,7 +1,9 @@
-<?php
+﻿<?php
 
-  require 'vendor/autoload.php';  
-  require_once 'autoload.inc.php';
+  require 'vendor/autoload.php';
+	//require_once 'connexion_bdd.php';
+  require_once 'model/User.php';
+
 
 
   $app = new \Slim\Slim(array(
@@ -26,8 +28,13 @@
   });
   
 	$app->post('/connexion', function () use ($app) {
-	$user = user::connexion($_POST['mail'], $_POST['password']);
+	$user = User::connexion($_POST['mail'], $_POST['password']);
     $app->render('authentification/connexion.php');
+  });
+
+	$app->post('/inscription', function () use ($app) {
+	$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name']);
+    $app->render('authentification/inscription.php');
   });
 
 
@@ -43,20 +50,6 @@
      $app->get('/test', function () use ($app) {
     $app->render('images/show.php');
   });
-
-
-  
-
-  
-
-
-
-
-
-
-
-
-
 
 
 
