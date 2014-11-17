@@ -23,6 +23,10 @@
    $app->get('/connexion', function () use ($app) {
     $app->render('authentification/connexion.php');
   });
+  
+	$app->post('/connexion', function () use ($app) {
+    $app->render('authentification/connexion.php');
+  });
 
   
 
