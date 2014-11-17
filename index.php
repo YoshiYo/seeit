@@ -24,6 +24,21 @@
     $app->render('authentification/connexion.php');
   });
 
+
+   $app->get('/images/:image_id', function ($image_id) use ($app) { // $image_id récupère l'id de l'image que l'on va récuperer
+    $app->render('images/show.php');                                 // Nous pouvons très bien nous mettre sur slash, et dès que l'on clique
+                                                                      // sur une image, on récupère l'id
+  });
+
+    $app->get('/inscription', function () use ($app) {
+    $app->render('authentification/inscription.php');
+  });
+
+     $app->get('/test', function () use ($app) {
+    $app->render('images/show.php');
+  });
+
+
   
 
   
