@@ -1,4 +1,6 @@
-<?php class Image {
+<?php 
+
+class Image {
 
 	private $photo_id;
 	private $photo_src;
@@ -59,7 +61,6 @@
    {
     return $this->_color;
    }
-}
 
   public function takeOneImage ($photo_id)
   {
@@ -80,10 +81,8 @@
     $requete->execute($valeursParam);
   }
 
-  public function takeAllImage () 
-
+  public static function takeAllImage () 
   {
-    //Select * From photos
     try
     {
       $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
@@ -94,11 +93,18 @@
       die('Erreur : ' . $e->getMessage());
     }
 
-    $requete = $db->prepare("SELECT * from photos)");
-    $requete->execute();
+    //$requete = $db->prepare("SELECT * from photos ORDER BY photo_id)");
+    //$requete->execute();
+    $requete = $db->query('SELECT * FROM photos');
+
+     // On affiche chaque entrée une à une
+while ($donnees = $requete->fetch())
+
+    echo ' 
+        <div class="small-2 large-4 columns">'.$donnees["photo_src"].'</div>';
   }
 
-  public function takeImageCategorie ($categorie)
+  public static function takeImageCategorie ($categorie)
   {
     //Select * From photos Where categorie = $categorie
     try
@@ -176,3 +182,6 @@
     $valeurParam = array(':photo_src'=> $photo_src,':title'=>$title, ':description'=>$description, ':categorie'=>$categorie, ':size'=>$size, ':color'=>$color);
     $requete->execute($valeurParam);
   }
+}
+
+?>

@@ -1,6 +1,7 @@
 <?php
 
   require 'vendor/autoload.php';
+  require 'model/image.class.php';
 
 
   $app = new \Slim\Slim(array(
@@ -16,8 +17,9 @@
   $view = $app->view();
   $view->setTemplatesDirectory('view');
 
-  $app->get('/', function () use ($app) {
+  $app->get('/', function () use ($app) {    
     $app->render('index.php');
+    $image = Image::takeAllImage();
   });
 
    $app->get('/connexion', function () use ($app) {
@@ -37,6 +39,8 @@
      $app->get('/test', function () use ($app) {
     $app->render('images/show.php');
   });
+
+
 
 
   
