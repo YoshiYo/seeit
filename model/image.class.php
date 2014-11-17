@@ -101,7 +101,7 @@ class Image {
 while ($donnees = $requete->fetch())
 
     echo ' 
-        <div class="small-2 large-4 columns">'.$donnees["photo_src"].'</div>';
+        <div class="small-2 large-4 columns"><img src="'.$donnees["photo_src"].'"/></div>';
   }
 
   public static function takeImageCategorie ($categorie)
