@@ -24,6 +24,10 @@
     $app->render('authentification/connexion.php');
   });
 
+    $app->get('/inscription', function () use ($app) {
+    $app->render('authentification/inscription.php');
+  });
+
   
 
   
