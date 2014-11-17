@@ -65,28 +65,114 @@
   {
     //Select * From photos Were photo_id = $photo_id
 
-  public function takeAllImage ()  }
+    try
+    {
+      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+      $db->query('SET NAMES utf8');
+    }
+    catch (Exception $e)
+    {
+      die('Erreur : ' . $e->getMessage());
+    }
+
+    $requete = $db->prepare("SELECT * from photos WHERE photo_id = :photo_id)");
+    $valeursParam = array(":photo_id" => $photo_id);
+    $requete->execute($valeursParam);
+  }
+
+  public function takeAllImage () 
 
   {
     //Select * From photos
+    try
+    {
+      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+      $db->query('SET NAMES utf8');
+    }
+    catch (Exception $e)
+    {
+      die('Erreur : ' . $e->getMessage());
+    }
+
+    $requete = $db->prepare("SELECT * from photos)");
+    $requete->execute();
   }
 
   public function takeImageCategorie ($categorie)
   {
     //Select * From photos Where categorie = $categorie
+    try
+    {
+      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+      $db->query('SET NAMES utf8');
+    }
+    catch (Exception $e)
+    {
+      die('Erreur : ' . $e->getMessage());
+    }
+
+    $requete = $db->prepare("SELECT * from photos WHERE categorie = :categorie)");
+    $valeursParam = array(":categorie" => $categorie);
+    $requete->execute($valeursParam);
   }
 
   public function takeImageSize ($size)
   {
     //Select * From photos Where size = $size
+    try
+    {
+      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+      $db->query('SET NAMES utf8');
+    }
+    catch (Exception $e)
+    {
+      die('Erreur : ' . $e->getMessage());
+    }
+
+    $requete = $db->prepare("SELECT * from photos WHERE size = :size)");
+    $valeursParam = array(":size" => $size);
+    $requete->execute($valeursParam);
+
   }
 
   public function takeImageColor ($color)
   {
     //Select * From photos Where color = $color
+    try
+    {
+      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+      $db->query('SET NAMES utf8');
+    }
+    catch (Exception $e)
+    {
+      die('Erreur : ' . $e->getMessage());
+    }
+
+    $requete = $db->prepare("SELECT * from photos WHERE color = :color)");
+    $valeursParam = array(":color" => $color);
+    $requete->execute($valeursParam);
   }
 
   public function addImage ($photo_src, $user_id, $title, $description, $categorie, $size, $color)
   {
+    try
+    {
+      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+      $db->query('SET NAMES utf8');
+    }
+    catch (Exception $e)
+    {
+      die('Erreur : ' . $e->getMessage());
+    }
 
+    $photo_src = $_POST['photo_src'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $categorie = $_POST['categorie'];
+    $size = $_POST['size'];
+    $color = $_POST['color'];
+
+    $requete = $db->prepare("INSERT INTO  `seeit`.`photos` (`photo_src` ,`title` ,`description` ,`categorie`, 'size', 'color') VALUES (:photo_src, :title, :description, :categorie, :size, :color)");
+    $valeurParam = array(':photo_src'=> $photo_src,':title'=>$title, ':description'=>$description, ':categorie'=>$categorie, ':size'=>$size, ':color'=>$color);
+    $requete->execute($valeurParam);
   }

@@ -1,20 +1,3 @@
-<?php
-if(isset($_POST['envoyer']))
-{
-	$mail = $_POST['mail'];
-	$password = $_POST['password'];
-	$first_name = $_POST['first_name'];
-	$last_name = $_POSt['last_name'];
-	
-	$adduser = new user($mail, $password, $first_name, $last_name);
-	
-	$adduser->inscription();
-	
-	header('location
-
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
