@@ -34,6 +34,10 @@
     $app->render('authentification/inscription.php');
   });
 
+     $app->get('/test', function () use ($app) {
+    $app->render('images/show.php');
+  });
+
 
   
 
