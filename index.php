@@ -1,6 +1,7 @@
 <?php
 
-  require 'vendor/autoload.php';
+  require 'vendor/autoload.php';  
+  require_once 'autoload.inc.php';
 
 
   $app = new \Slim\Slim(array(
@@ -21,6 +22,11 @@
   });
 
    $app->get('/connexion', function () use ($app) {
+    $app->render('authentification/connexion.php');
+  });
+  
+	$app->post('/connexion', function () use ($app) {
+	$user = user::connexion($_POST['mail'], $_POST['password']);
     $app->render('authentification/connexion.php');
   });
 
