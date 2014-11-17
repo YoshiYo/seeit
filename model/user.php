@@ -1,9 +1,8 @@
 <?php
 
-require_once "/autoload.inc.php";
-require_once "bdd.php";
 
-class user{
+
+class User{
 	private $mail;
 	private $password;
 	private $first_name;
@@ -19,15 +18,26 @@ class user{
 		$this->_admin = $admin;
 	}
 	
-	public function inscription()
+	public static function inscription($mail, $password, $first_name, $last_name)
 	{
-		$sql = $db->prepare("INSERT INTO users(mail, password, first_name, last_name, admin) VALUES (:mail, :password, :first_name, :last_name, :admin)");
-		$sql = bindParam(":mail", $this->_mail);
-		$sql = bindParam(":password", $this->_password);
-		$sql = bindParam(":first_name", $this->_first_name);
-		$sql = bindParam(":last_name", $this->_last_name);
-		$sql = bindParam(":admin", $this->_admin);
-		$sql->execute();
+			session_start();
+	try
+	{
+		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
+		$db->query('SET NAMES utf8');
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	}
+	catch (Exception $e)
+	{
+			die('Erreur : ' . $e->getMessage());
+	}
+		
+		
+		$sql = $db->prepare("INSERT INTO users(mail, password, first_name, last_name) VALUES (:mail, :password, :first_name, :last_name)");
+		$valeursparam = array(":mail"=>$mail,":password"=>$password,
+		":first_name"=>$first_name,
+		":last_name"=>$last_name);
+		$sql->execute($valeursparam);
 	}
 	
 	/*public function before_connexion()
@@ -43,11 +53,24 @@ class user{
 	}
 	}*/
 	
-	public function connexion($mail, $password)
+	public static function connexion($mail, $password)
 	{
+	
+		session_start();
+	try
+	{
+		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
+		$db->query('SET NAMES utf8');
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	}
+	catch (Exception $e)
+	{
+			die('Erreur : ' . $e->getMessage());
+	}
 		
-		$sql2 = $db->prepare("SELECT * FROM users WHERE mail = ".$this->_mail." AND password = ".$this->_password);
-		$sql2->execute();
+		$sql ="SELECT * FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
+		$sql = $db->prepare($sql);
+		$sql->execute();
 	}
 	
 }

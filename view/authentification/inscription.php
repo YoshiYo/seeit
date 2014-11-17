@@ -2,7 +2,6 @@
 <html>
 <head>
 </head>
-
 <body>
 <form method="post" action="">
             <div class="row">

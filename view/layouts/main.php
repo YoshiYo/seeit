@@ -10,8 +10,7 @@
     <script src="js/sphere.js"></script>
   </head>
   <body>
-
-    <nav class="top-bar" data-topbar>
+	<nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
           <h1><a href="#">Seeit</a></h1>
