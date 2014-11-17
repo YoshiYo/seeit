@@ -3,6 +3,7 @@
   require 'vendor/autoload.php';
 	//require_once 'connexion_bdd.php';
   require_once 'model/User.php';
+  require_once 'model/image.class.php';
 
 
 
@@ -21,6 +22,7 @@
 
   $app->get('/', function () use ($app) {
     $app->render('index.php');
+    $user = Image::takeAllImage();
   });
 
    $app->get('/connexion', function () use ($app) {
