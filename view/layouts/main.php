@@ -68,7 +68,7 @@
 
 <!-- Left Nav Section -->
         <ul class="left">
-          <li class="active"><a href="/seeit/deconnexion">Déconnexion</a></li>
+          <li class="active"><a href="/seeit/inscription">Inscription</a></li>
           <li class="has-dropdown">
             <a href="#">Explorer</a>
             <ul class="dropdown">
