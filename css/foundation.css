@@ -55,7 +55,9 @@ a:hover {
 
 img {
   max-width: 100%;
-  height: auto; }
+  height: auto;
+    margin-bottom:15px;    
+}
 
 img {
   -ms-interpolation-mode: bicubic; }
