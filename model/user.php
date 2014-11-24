@@ -75,7 +75,6 @@ class User{
 
 	public static function deconnexion ()
 	{
-		session_start();
 		session_destroy();
 		header('location: /seeit/');
 		exit;
