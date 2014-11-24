@@ -72,5 +72,12 @@ class User{
 		$sql = $db->prepare($sql);
 		$sql->execute();
 	}
-	
+
+	public static function deconnexion ()
+	{
+		session_start();
+		session_destroy();
+		header('location: /seeit/');
+		exit;
+	}
 }
