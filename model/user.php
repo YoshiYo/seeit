@@ -20,7 +20,6 @@ class User{
 	
 	public static function inscription($mail, $password, $first_name, $last_name)
 	{
-			session_start();
 	try
 	{
 		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
@@ -56,7 +55,6 @@ class User{
 	public static function connexion($mail, $password)
 	{
 	
-		session_start();
 	try
 	{
 		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
@@ -69,14 +67,25 @@ class User{
 	}
 		
 		$sql ="SELECT * FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
-		$sql = $db->prepare($sql);
-		$sql->execute();
+		$result = $db->prepare($sql);
+		$columns = $result->execute();
+		$columns = $result->fetch();
+		if($sql)
+				{							
+					$_SESSION['prenom'] = $columns['first_name'] ;
+					$_SESSION['utilisateur'] = $columns['first_name'].' '.$columns['last_name'];
+					$_SESSION['nom'] = $columns['nom'];
+					$_SESSION['utilisateur_id'] = $columns['user_id'];				
+				}
+			else
+			{
+				echo "vos identifiants sont erronés";
+			}
 		
 	}
 
 	public static function deconnexion ()
 	{
-		session_start();
 		session_destroy();
 		header('location: /seeit/');
 		exit;
