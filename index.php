@@ -1,9 +1,10 @@
-﻿<?php
+<?php
 
   require 'vendor/autoload.php';
 	//require_once 'connexion_bdd.php';
   require_once 'model/User.php';
   require_once 'model/image.class.php';
+  require_once 'model/recherche.php';
 
 
 
@@ -70,6 +71,11 @@
      $app->get('/deconnexion', function () use ($app) {
     $app->render('authentification/deconnexion.php');
     $user = User::deconnexion();
+  });
+
+     $app->post('/recherche', function () use ($app) {
+    $app->render('recherche.php');
+    $recherche = Recherche::search_photo($_POST['s']);
   });
 
   $app->run();
