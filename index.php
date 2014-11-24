@@ -22,7 +22,7 @@
 
   $app->get('/', function () use ($app) {
     $app->render('index.php');
-    $user = Image::takeAllImage();
+    $image = Image::takeAllImage();
   });
 
    $app->get('/connexion', function () use ($app) {
@@ -54,7 +54,10 @@
     $app->render('images/show.php');
   });
 
-
+     $app->get('/deconnexion', function () use ($app) {
+    $app->render('authentification/deconnexion.php');
+    $user = User::deconnexion();
+  });
 
   $app->run();
 
