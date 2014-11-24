@@ -100,7 +100,7 @@ class Image {
      // On affiche chaque entrée une à une
 while ($donnees = $requete->fetch())
 
-    echo ' 
+    echo '
         <div class="small-2 large-4 columns content_img">
           <img src="'.$donnees["photo_src"].'"/>
           <div class="hover_img">
