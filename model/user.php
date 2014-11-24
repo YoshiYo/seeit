@@ -117,7 +117,6 @@ class User{
 			die('Erreur : ' . $e->getMessage());
 	}
 		
-<<<<<<< HEAD
 		$sql ="SELECT COUNT(*) AS nb, user_id, mail, password, first_name, last_name FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
 		$result = $db->prepare($sql);
 		$columns = $result->execute();
@@ -149,11 +148,9 @@ try
 		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
 		$db->query('SET NAMES utf8');
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-=======
 		$sql ="SELECT * FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
 		$sql = $db->prepare($sql);
 		$sql->execute();
->>>>>>> c856944d8ad98425c5281bf6eb586c245f1b18fe
 	}
 	catch (Exception $e)
 	{
