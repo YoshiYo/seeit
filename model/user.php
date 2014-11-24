@@ -56,7 +56,6 @@ class User{
 	public static function connexion($mail, $password)
 	{
 	
-		session_start();
 	try
 	{
 		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');

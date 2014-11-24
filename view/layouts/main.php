@@ -12,7 +12,7 @@
     <script src="js/sphere.js"></script>
   </head>
   <body>
-    <?php if ($_SESSION) {?>
+    <?php if ($_SESSION) { ?>
 	<nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
