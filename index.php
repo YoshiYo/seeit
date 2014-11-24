@@ -49,11 +49,21 @@
     $app->get('/inscription', function () use ($app) {
     $app->render('authentification/inscription.php');
   });
+  
+   $app->post('/modifiercompte', function () use ($app) {
+    $app->render('authentification/modifiercompte.php');
+	$user = User::modification($_POST['newuser']);
+  });
 
      $app->get('/test', function () use ($app) {
     $app->render('images/show.php');
   });
 
+	$app->get('/infocompte', function () use ($app) {
+    $app->render('authentification/infocompte.php');
+	$user = User::afficher_compte();
+  });
+  
      $app->get('/deconnexion', function () use ($app) {
     $app->render('authentification/deconnexion.php');
     $user = User::deconnexion();
