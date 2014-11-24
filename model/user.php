@@ -31,6 +31,16 @@ class User{
 		{
 				die('Erreur : ' . $e->getMessage());
 		}
+		if(!empty($_POST["envoyer"]))
+		{
+			$id = $_SESSION['utilisateur_id'] ;
+		
+			$newuser = $_POST["newuser"];
+		
+			$sql  = 'UPDATE users SET last_name="'.$newuser.'" WHERE user_id = '.$id.' ';
+			$result = $db->prepare($sql);
+			$columns = $result->execute();
+		}
 		if(!empty($_SESSION))
 		{
 			$id = $_SESSION['utilisateur_id'] ;
@@ -50,17 +60,7 @@ class User{
 			echo "pas de résultat" ;
 		}
 
-		if(!empty($_POST["envoyer"]))
-		{
-			$id = $_SESSION['utilisateur_id'] ;
 		
-			$newuser = $_POST["newuser"];
-		
-			$sql  = 'UPDATE users SET last_name="'.$newuser.'" WHERE user_id = '.$id.' ';
-			echo $sql ;
-			$result = $db->prepare($sql);
-			$columns = $result->execute();
-		}
 	}
 	
 	
@@ -116,9 +116,8 @@ class User{
 	{
 			die('Erreur : ' . $e->getMessage());
 	}
-		
-<<<<<<< HEAD
-		$sql ="SELECT COUNT(*) AS nb, user_id, mail, password, first_name, last_name FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
+
+		$sql ="SELECT COUNT(*) AS nb, user_id, mail, password, first_name, last_name FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
 		$result = $db->prepare($sql);
 		$columns = $result->execute();
 		$columns = $result->fetch();
@@ -149,11 +148,7 @@ try
 		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
 		$db->query('SET NAMES utf8');
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-=======
-		$sql ="SELECT * FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
-		$sql = $db->prepare($sql);
-		$sql->execute();
->>>>>>> c856944d8ad98425c5281bf6eb586c245f1b18fe
+
 	}
 	catch (Exception $e)
 	{
