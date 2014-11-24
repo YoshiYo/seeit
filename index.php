@@ -33,36 +33,40 @@
 	$app->post('/connexion', function () use ($app) {
 	$user = User::connexion($_POST['mail'], $_POST['password']);
     $app->render('authentification/connexion.php');
-  });
+	});
 
 	$app->post('/inscription', function () use ($app) {
 	$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name']);
     $app->render('authentification/inscription.php');
-  });
+	});
 
 
    $app->get('/images/:image_id', function ($image_id) use ($app) { // $image_id récupère l'id de l'image que l'on va récuperer
     $app->render('images/show.php');                                 // Nous pouvons très bien nous mettre sur slash, et dès que l'on clique
                                                                       // sur une image, on récupère l'id
-  });
+	});
 
     $app->get('/inscription', function () use ($app) {
     $app->render('authentification/inscription.php');
-  });
+	});
   
-   $app->post('/modifiercompte', function () use ($app) {
+   $app->get('/modifiercompte', function () use ($app) {
     $app->render('authentification/modifiercompte.php');
+	});
+  
+    $app->post('/modifiercompte', function () use ($app) {
 	$user = User::modification($_POST['newuser']);
-  });
+    $app->render('authentification/modifiercompte.php');
+	});
 
      $app->get('/test', function () use ($app) {
     $app->render('images/show.php');
-  });
+	});
 
 	$app->get('/infocompte', function () use ($app) {
     $app->render('authentification/infocompte.php');
 	$user = User::afficher_compte();
-  });
+	});
   
      $app->get('/deconnexion', function () use ($app) {
     $app->render('authentification/deconnexion.php');
