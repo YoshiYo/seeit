@@ -1,4 +1,3 @@
-<?php session_start();?>
 <!doctype html>
 <html class="no-js" lang="fr">
   <head>
@@ -12,7 +11,7 @@
     <script src="js/sphere.js"></script>
   </head>
   <body>
-    <?php if ($_SESSION) {?>
+    <?php if (isset($_SESSION['utilisateur_id'])) {?>
 	<nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
