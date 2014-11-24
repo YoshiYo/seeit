@@ -106,16 +106,16 @@ class User{
 	public static function connexion($mail, $password)
 	{
 	
-	try
-	{
-		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
-		$db->query('SET NAMES utf8');
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	}
-	catch (Exception $e)
-	{
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
+			$db->query('SET NAMES utf8');
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch (Exception $e)
+		{
 			die('Erreur : ' . $e->getMessage());
-	}
+		}
 
 		$sql ="SELECT COUNT(*) AS nb, user_id, mail, password, first_name, last_name FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
 		$result = $db->prepare($sql);
@@ -123,23 +123,24 @@ class User{
 		$columns = $result->fetch();
 		$nb = $columns['nb'];
 		if($nb == 1)
-				{
-					session_start();
-					$_SESSION['utilisateur_id'] = $columns['user_id'];
-					$_SESSION['mail'] = $columns['mail'];
-					$_SESSION['nom'] = $columns['last_name'];
-					$_SESSION['prenom'] = $columns['first_name'];
-					$_SESSION['password'] = $columns['password'];
-					echo "<a href='/seeit/infocompte'>Information sur mon compte</a>";
-					$sql ="SELECT * FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
-					$sql = $db->prepare($sql);
-					$sql->execute();
-					header('location: /seeit/');
+		{
+			session_start();
+			$_SESSION['utilisateur_id'] = $columns['user_id'];
+			$_SESSION['mail'] = $columns['mail'];
+			$_SESSION['nom'] = $columns['last_name'];
+			$_SESSION['prenom'] = $columns['first_name'];
+			$_SESSION['password'] = $columns['password'];
+			echo "<a href='/seeit/infocompte'>Information sur mon compte</a>";
+			$sql ="SELECT * FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
+			$sql = $db->prepare($sql);
+			$sql->execute();
+			header('location: /seeit/');
 					}
-			else
-			{
-				echo "vos identifiants sont erronés";
-			}
+		else
+		{
+			echo "vos identifiants sont erronés";
+		}
+	}
 	
 	public static function afficher_compte()
 	{
