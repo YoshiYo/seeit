@@ -34,7 +34,7 @@ class User{
 		
 		
 		$sql = $db->prepare("INSERT INTO users(mail, password, first_name, last_name) VALUES (:mail, :password, :first_name, :last_name)");
-		$valeursparam = array(":mail"=>$mail,":password"=>$password,
+		$valeursparam = array(":mail"=>$mail,":password"=>md5($password),
 		":first_name"=>$first_name,
 		":last_name"=>$last_name);
 		$sql->execute($valeursparam);
@@ -68,14 +68,13 @@ class User{
 			die('Erreur : ' . $e->getMessage());
 	}
 		
-		$sql ="SELECT * FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
+		$sql ="SELECT * FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
 		$sql = $db->prepare($sql);
 		$sql->execute();
 	}
 
 	public static function deconnexion ()
 	{
-		session_start();
 		session_destroy();
 		header('location: /seeit/');
 		exit;
