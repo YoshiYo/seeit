@@ -142,7 +142,7 @@ class User{
 			}
 
 		
-	}
+	}}
 	
 	public static function afficher_compte()
 	{
