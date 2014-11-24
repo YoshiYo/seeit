@@ -1,9 +1,10 @@
-﻿<?php
+<?php
 
   require 'vendor/autoload.php';
 	//require_once 'connexion_bdd.php';
   require_once 'model/User.php';
   require_once 'model/image.class.php';
+  require_once 'model/recherche.php';
 
 
 
@@ -48,14 +49,29 @@
     $app->get('/inscription', function () use ($app) {
     $app->render('authentification/inscription.php');
   });
+  
+   $app->post('/modifiercompte', function () use ($app) {
+    $app->render('authentification/modifiercompte.php');
+	$user = User::modification($_POST['newuser']);
+  });
 
      $app->get('/test', function () use ($app) {
     $app->render('images/show.php');
   });
 
+	$app->get('/infocompte', function () use ($app) {
+    $app->render('authentification/infocompte.php');
+	$user = User::afficher_compte();
+  });
+  
      $app->get('/deconnexion', function () use ($app) {
     $app->render('authentification/deconnexion.php');
     $user = User::deconnexion();
+  });
+
+     $app->post('/recherche', function () use ($app) {
+    $app->render('recherche.php');
+    $recherche = Recherche::search_photo($_POST['s']);
   });
 
   $app->run();

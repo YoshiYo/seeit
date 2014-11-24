@@ -1,4 +1,3 @@
-<?php session_start();?>
 <!doctype html>
 <html class="no-js" lang="fr">
   <head>
@@ -12,7 +11,7 @@
     <script src="js/sphere.js"></script>
   </head>
   <body>
-    <?php if ($_SESSION) {?>
+    <?php if (isset($_SESSION['utilisateur_id'])) {?>
 	<nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
@@ -25,7 +24,7 @@
       <section class="top-bar-section">
 <!-- Right Nav Section -->
         <ul class="right">
-          <li class="has-form"> <div class="row collapse"> <div class="large-8 small-9 columns"> <input type="text" placeholder="Find Stuff"> </div> <div class="large-4 small-3 columns"> <a href="#" class="alert button expand">Search</a> </div> </div> </li>
+          <li class="has-form"> <div class="row collapse"> <div class="large-8 small-9 columns"> <form method="post" action="/seeit/recherche"><input name ="s" type="text" placeholder="Find Stuff"> </div> <div class="large-4 small-3 columns"> <input type="submit" class="alert button expand" placeholder='RECHERCHER'/> </div></form> </div> </li>
           <li class=""><a href="/seeit/">Mon compte</a></li>
         </ul>
 
