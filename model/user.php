@@ -71,6 +71,7 @@ class User{
 		$sql ="SELECT * FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
 		$sql = $db->prepare($sql);
 		$sql->execute();
+		
 	}
 	
 }

@@ -26,6 +26,7 @@
   });
 
    $app->get('/connexion', function () use ($app) {
+   $user = User::connexion($_POST['mail'], $_POST['password']);
     $app->render('authentification/connexion.php');
   });
   
