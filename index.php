@@ -63,10 +63,10 @@
     $app->render('images/show.php');
 	});
 
-	$app->get('/infocompte', function () use ($app) {
+  $app->get('/infocompte', function () use ($app) {
     $app->render('authentification/infocompte.php');
-	$user = User::afficher_compte();
-	});
+  $user = User::afficher_compte();
+  });
   
      $app->get('/deconnexion', function () use ($app) {
     $app->render('authentification/deconnexion.php');

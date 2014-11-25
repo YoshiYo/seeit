@@ -115,17 +115,8 @@ class User{
 		catch (Exception $e)
 		{
 			die('Erreur : ' . $e->getMessage());
-<<<<<<< HEAD
 		}
-=======
-
-		
-		$sql ="SELECT COUNT(*) AS nb, user_id, mail, password, first_name, last_name FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
-
->>>>>>> 44428d16d25b5d9857a96119aa243ad4d49ed3d5
-
 		$sql ="SELECT COUNT(*) AS nb, user_id, mail, password, first_name, last_name FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
-
 		$result = $db->prepare($sql);
 		$columns = $result->execute();
 		$columns = $result->fetch();
@@ -143,33 +134,26 @@ class User{
 			$sql = $db->prepare($sql);
 			$sql->execute();
 			header('location: /seeit/');
-					}
-<<<<<<< HEAD
+		}
+
 		else
 		{
 			echo "vos identifiants sont erronés";
 		}
 	}
-=======
-			else
-			{
-				echo "vos identifiants sont erronés";
-			}
-
-		
-	}}
->>>>>>> 44428d16d25b5d9857a96119aa243ad4d49ed3d5
 	
 	public static function afficher_compte()
 	{
 	session_start();
+	$password = $_SESSION['password'];
+	$mail = $_SESSION['mail'];
 try
 	{
 		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
 		$db->query('SET NAMES utf8');
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql ="SELECT * FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
+		$sql ="SELECT * FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
 		$sql = $db->prepare($sql);
 		$sql->execute();
 
@@ -184,6 +168,7 @@ try
 		
 		$id = $_SESSION['utilisateur_id'] ;
 $sql = 'SELECT last_name, first_name, mail, password FROM users WHERE user_id = '.$id.'  ';
+echo $sql;
 $result =$db->prepare($sql);
 $row = $result->execute();
 $row = $result->fetch();
@@ -191,7 +176,7 @@ $row = $result->fetch();
 		echo "Votre nom :".$row["last_name"].'</br>' ;
 		echo "Votre prenom :".$row["first_name"].'</br>' ;
 		echo "Votre mail :".$row["mail"].'</br>' ;
-		echo "Votre mdp :".$row["password"].'</br>' ;
+		//echo "Votre mdp :".$row["password"].'</br>' ;
 		echo "<a href='/seeit/modifiercompte'>modification du compte</a>";
 	
 }
