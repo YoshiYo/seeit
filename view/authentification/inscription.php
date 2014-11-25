@@ -17,7 +17,7 @@
               </div>
               <div class="large-4 columns2" required>
                 <label>Nom :
-                  <input type="password" name="last_name"/>
+                  <input type="text" name="last_name"/>
                 </label>
               </div>
               <div class="large-4 columns2">
