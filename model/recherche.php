@@ -17,7 +17,6 @@ class Recherche {
         
     $request = NULL;
     $request = 'SELECT * FROM photos WHERE title LIKE "%'.$s.'%" OR categorie LIKE "%'.$s.'%"';
-        echo $request;
         $request = $db->prepare($request);
 		$request->execute();
         $datas=array();  
@@ -25,9 +24,15 @@ class Recherche {
     if ($request != false) {
         while($row = $request->fetch()){
             $datas[] = $row;
+            echo '<div class="small-2 large-4 columns content_img">
+                  <img src="'.$row["photo_src"].'"/>
+                    <div class="hover_img">
+                    <p>'.$row["title"].'</p>
+                    </div>
+                </div>';
         }
-        $request->closeCursor();
     }
+        $request->closeCursor();
     }
 
     public static function search_user ($title, $categorie)	

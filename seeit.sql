@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 03 Novembre 2014 à 08:40
+-- Généré le: Mar 25 Novembre 2014 à 13:36
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -51,15 +51,20 @@ CREATE TABLE IF NOT EXISTS `photos` (
   `size` varchar(250) COLLATE utf8_bin NOT NULL,
   `color` varchar(250) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`photo_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=21 ;
 
 --
 -- Contenu de la table `photos`
 --
 
 INSERT INTO `photos` (`photo_id`, `photo_src`, `user_id`, `title`, `description`, `categorie`, `size`, `color`) VALUES
-(1, 'img.jpeg', 1, 'PHOTO TEST', 'DESCRIPTION', 'PAYSAGES', 'HD', 'ROUGE'),
-(2, 'img2.jpeg', 1, 'TITRE', 'DESCRIPTION', 'PAYSAGE', 'HD', 'rouge');
+(12, 'http://vpnhotlist.com/wp-content/uploads/2014/03/image.jpg', 0, 'titre', '', '', '', ''),
+(13, 'http://www.zastavki.com/pictures/originals/2013/Photoshop_Image_of_the_horse_053857_.jpg', 0, 'photo de merde', '', '', '', ''),
+(14, 'http://www.in.com/contents/elements/SaveImage.php?image=8d512c56b197753d761bc7501d7c09ee_w_s.jpg&id=313242&ctid=WALLPAPERS', 0, 'La bite', '', '', '', ''),
+(16, 'https://lh5.ggpht.com/-GmnZzTGMD7o/Uafk33IaVYI/AAAAAAAAMd4/aFjhymvWvak/s640/PatrickPichette414.jpg', 0, 'Triste vie', '', '', '', ''),
+(17, 'http://www.lefigaro.fr/medias/2014/07/03/PHOf2d2cd5c-0291-11e4-bc67-a9e89e449400-805x453.jpg', 0, 'Vagues', '', '', '', ''),
+(18, 'http://farm8.staticflickr.com/7304/11949811256_99cd5cbd55_b.jpg', 0, 'Patates', '', '', '', ''),
+(19, 'http://www.glamourparis.com/uploads/images/thumbs/201324/photo___les_plus_beaux_clich__s_sous_marins_2608_north_640x440.jpg', 0, 'Miam', 'requin', 'Animaux', 'HD', 'blue');
 
 -- --------------------------------------------------------
 
@@ -76,7 +81,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `admin` int(11) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `mail` (`mail`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`user_id`, `mail`, `password`, `first_name`, `last_name`, `admin`) VALUES
+(3, 'louis.charbonier@y-nov.com', '777cadc280bb23ebea268ded98338c39', 'louis', 'la bite', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

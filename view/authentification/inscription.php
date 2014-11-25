@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body style ="margin-top:-17px;">
 <form method="post" action="">
             <div class="row">
               <div class="large-4 columns2 required" required>
@@ -31,5 +26,3 @@
             </div>
           </div>
         </form>
-</body>
-</html>

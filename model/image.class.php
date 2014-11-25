@@ -104,7 +104,7 @@ while ($donnees = $requete->fetch())
         <div class="small-2 large-4 columns content_img">
           <img src="'.$donnees["photo_src"].'"/>
           <div class="hover_img">
-            <p>PARAGRAHPE</p>
+            <p>'.$donnees["title"].'</p>
           </div>
         </div>';
   }
