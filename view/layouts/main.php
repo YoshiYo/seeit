@@ -24,7 +24,7 @@
       <section class="top-bar-section">
 <!-- Right Nav Section -->
         <ul class="right">
-          <li class="has-form"> <div class="row collapse"> <div class="large-8 small-9 columns"> <form method="post" action="/seeit/recherche"><input name ="s" type="text" placeholder="Find Stuff"> </div> <div class="large-4 small-3 columns"> <input type="submit" class="alert button expand" placeholder='RECHERCHER'/> </div></form> </div> </li>
+          <li class="has-form"> <div class="row collapse"> <div class="large-8 small-9 columns"> <form method="post" action="/seeit/recherche"><input name ="s" type="text" placeholder="Find Stuff"> </div> <div class="large-4 small-3 columns"> <input type="submit" class="alert button expand"/> </div></form> </div> </li>
           <li class=""><a href="/seeit/">Mon compte</a></li>
         </ul>
 
