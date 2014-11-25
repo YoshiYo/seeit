@@ -12,12 +12,12 @@
                 </label>
               </div>
               <div class="large-4 columns2 required" required>
-                <label>prenom :
+                <label>Prénom :
                   <input type="text" name="first_name"/>
                 </label>
               </div>
               <div class="large-4 columns2" required>
-                <label>nom :
+                <label>Nom :
                   <input type="password" name="last_name"/>
                 </label>
               </div>
