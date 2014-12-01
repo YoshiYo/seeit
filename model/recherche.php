@@ -57,7 +57,6 @@ class Recherche {
         $request = $db->prepare($request);
         $request->execute();
         $datas=array();  
-        $user_id = $_SESSION["utilisateur_id"];
         
     if ($request != false) {
         while($row = $request->fetch()){
@@ -68,7 +67,7 @@ class Recherche {
             <img src="img/'.$row["avatar"].'"/>
             </div>
             <div class="columns large-6">
-            <a href="/seeit/user?user_id='.$user_id.'"><h3>'.$row['last_name'].' '.$row['first_name'].'</h3></a>
+            <a href="/seeit/user?user_id='.$row['user_id'].'"><h3>'.$row['last_name'].' '.$row['first_name'].'</h3></a>
             </div>
             </div>';
         }

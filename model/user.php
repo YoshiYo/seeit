@@ -119,26 +119,23 @@ class User{
 		{
 			die('Erreur : ' . $e->getMessage());
 		}
-		$sql ="SELECT COUNT(*) AS nb, user_id, mail, password, first_name, last_name FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
+		$sql ="SELECT * FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
 		$result = $db->prepare($sql);
 		$columns = $result->execute();
 		$columns = $result->fetch();
-		$nb = $columns['nb'];
-		if($nb == 1)
-		{
-			$_SESSION['utilisateur_id'] = $columns['user_id'];
-			$_SESSION['mail'] = $columns['mail'];
-			$_SESSION['password'] = $columns['password'];
+		if ( sizeof($columns) > 0)
 
-			header('location: /seeit/');
-			exit;
-			
-		}
-
-		else
 		{
-			echo "vos identifiants sont erronés";
+				$_SESSION['utilisateur_id'] = $columns['user_id'];
+				$_SESSION['mail'] = $columns['mail'];
+				$_SESSION['password'] = $columns['password'];
+				if ($columns['admin'] == 1)
+				{
+					$_SESSION['admin'] = true;
+				}
+				return true;
 		}
+		return false;
 	}
 
 	
@@ -166,21 +163,32 @@ try
 	{
 		
 		$id = $_SESSION['utilisateur_id'] ;
-$sql = 'SELECT last_name, first_name, mail, password FROM users WHERE user_id = '.$id.'  ';
-echo $sql;
+$sql = 'SELECT last_name, first_name, mail, password, avatar FROM users WHERE user_id = '.$id.'  ';
 $result =$db->prepare($sql);
 $row = $result->execute();
 $row = $result->fetch();
 
-		echo "Votre nom :".$row["last_name"].'</br>' ;
-		echo "Votre prenom :".$row["first_name"].'</br>' ;
-		echo "Votre mail :".$row["mail"].'</br>' ;
-		//echo "Votre mdp :".$row["password"].'</br>' ;
-		echo "<a href='/seeit/modifiercompte'>modification du compte</a>";
 	
+
+		echo "<div class='row content'>";
+		
+		echo "<div class='small-8 large-8 columns'>";
+		echo "<h1 class='columns large-12 center' >VOTRE COMPTE</h1>";
+		echo "<div id='infocompte' class='columns small-12 large-12 center'>";
+		echo "<strong>Votre nom : </strong>".$row["last_name"].'</br>' ;
+		echo "<strong>Votre prenom : </strong>".$row["first_name"].'</br>' ;
+		echo "<strong>Votre mail : </strong>".$row["mail"].'</br>' ;
+		echo "</div>";
+		echo "<a href='/seeit/modifiercompte' class='button expand' style='margin-top: 68px' >Modification du compte</a>";
+		echo "</div>";
+		echo "<div class='small-4 large-4 columns'>";
+		echo "<img src='".$row["avatar"]."' id='photoavatar'/>" ;
+		echo "</div>";
+		echo "</div>";
+
 }
 else{
-	echo "pas de résultat" ;
+	echo "Vous n'êtes pas inscrit" ;
 }
 }
 
@@ -269,6 +277,5 @@ else{
         </div>';
   }
 	}
-		
 
 	}?>

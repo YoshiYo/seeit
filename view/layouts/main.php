@@ -38,12 +38,12 @@
           <li class="has-dropdown">
             <a href="#">Explorer</a>
             <ul class="dropdown">
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
+              <li><a href="#">Paysage</a></li>
+              <li><a href="#">Art</a></li>
+              <li><a href="#">Animal</a></li>
+              <li><a href="#">Sport</a></li>
+              <li><a href="#">Immobilier</a></li>
+              <li><a href="#">Musique</a></li>
             </ul>
           </li>
           <li class=""><a href="/seeit/galerie">Ma Galerie</a></li>
@@ -76,12 +76,12 @@
           <li class="has-dropdown">
             <a href="#">Explorer</a>
             <ul class="dropdown">
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
+              <li><a href="#">Paysage</a></li>
+              <li><a href="#">Art</a></li>
+              <li><a href="#">Animal</a></li>
+              <li><a href="#">Sport</a></li>
+              <li><a href="#">Immobilier</a></li>
+              <li><a href="#">Musique</a></li>
             </ul>
           </li>
         </ul>
@@ -90,8 +90,20 @@
 
     <?php } ?>
 <ul class="breadcrumbs"> 
+
+  <li><a href="#">Paysage</a></li>
+  <li><a href="#">Art</a></li>
+  <li><a href="#">Animal</a></li>
+  <li><a href="#">Sport</a></li> 
+  <li><a href="#">Immobilier</a></li>
+  <li><a href="#">Musique</a></li> 
+
   <li><a href="#">Home</a></li>
-  <li><a href="#">Features</a></li> 
+  <li><a href="/seeit/test_image">Tester son image</a></li> 
+  <?php if( isset($_SESSION['admin']) && $_SESSION['admin'] ):?> 
+    <li><a href="/seeit/admin">Admin</a></li> 
+  <?php endif ?>
+
 </ul>
 <?php 
 echo $yield;
