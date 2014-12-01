@@ -166,8 +166,7 @@ try
 	{
 		
 		$id = $_SESSION['utilisateur_id'] ;
-$sql = 'SELECT last_name, first_name, mail, password FROM users WHERE user_id = '.$id.'  ';
-echo $sql;
+$sql = 'SELECT last_name, first_name, mail, password, avatar FROM users WHERE user_id = '.$id.'  ';
 $result =$db->prepare($sql);
 $row = $result->execute();
 $row = $result->fetch();
@@ -175,12 +174,13 @@ $row = $result->fetch();
 		echo "Votre nom :".$row["last_name"].'</br>' ;
 		echo "Votre prenom :".$row["first_name"].'</br>' ;
 		echo "Votre mail :".$row["mail"].'</br>' ;
+        echo "Votre avatar :".$row["avatar"].'</br>' ;
 		//echo "Votre mdp :".$row["password"].'</br>' ;
 		echo "<a href='/seeit/modifiercompte'>modification du compte</a>";
 	
 }
 else{
-	echo "pas de résultat" ;
+	echo "Vous n'êtes pas inscrit" ;
 }
 }
 

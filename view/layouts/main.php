@@ -38,12 +38,12 @@
           <li class="has-dropdown">
             <a href="#">Explorer</a>
             <ul class="dropdown">
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
+              <li><a href="#">Paysage</a></li>
+              <li><a href="#">Art</a></li>
+              <li><a href="#">Animal</a></li>
+              <li><a href="#">Sport</a></li>
+              <li><a href="#">Immobilier</a></li>
+              <li><a href="#">Musique</a></li>
             </ul>
           </li>
           <li class=""><a href="/seeit/galerie">Ma Galerie</a></li>
