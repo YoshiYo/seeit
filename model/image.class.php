@@ -127,7 +127,7 @@ if(isset($_SESSION['mail'])){
         <div class="small-2 large-4 columns content_img">
           <img class="favoris" src="'.$donnees2["photo_src"].'"/>
           <div class="hover_img">
-            <a href="/seeit/image?photo_id='.$donnees2["photo_id"].'"> <p class="titre">'.$donnees["title"].'</p></a>
+            <a href="/seeit/image?photo_id="'.$donnees2["photo_id"].'"> <p class="titre">'.$donnees["title"].'</p></a>
             <a href="/seeit/delfavoris?photo_id='.$donnees2["photo_id"].'"><div class="fav"><img class="ico_del_fav" src="img/fav.png" style="width:100%;"></div></a>
           </div>
         </div>';
@@ -145,7 +145,7 @@ while ($donnees = $requete->fetch())
         <div class="small-2 large-4 columns content_img">
           <img src="'.$donnees["photo_src"].'"/>
           <div class="hover_img">
-            <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"> p class="titre">'.$donnees["title"].'</p></a>
+            <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"><p class="titre">'.$donnees["title"].'</p></a>
             <a href="/seeit/addfavoris?photo_id='.$donnees["photo_id"].'"><div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
           </div>
         </div>';
