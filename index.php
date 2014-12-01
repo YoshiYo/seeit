@@ -88,6 +88,17 @@
     $photo = Image::delFavoris();
   });
 
+    $app->get('/galerie', function () use ($app) {
+    $app->render('galerie.php');
+    $photo = Image::galerie();
+  });
+
+     $app->get('/image', function () use ($app) {
+      $app->render('image.php');
+      $photo = Image::takeOneImage();
+      $image = Image::takeAllImage();
+  });
+
 
 
   $app->run();
