@@ -9,14 +9,16 @@ class User{
 	private $first_name;
 	private $last_name;
 	private $admin;
+    private $avatar;
 	
-	public function __construct($mail, $password, $first_name, $last_name, $admin)
+	public function __construct($mail, $password, $first_name, $last_name, $admin, $avatar)
 	{
 		$this->_mail = $mail;
 		$this->_password = $password;
 		$this->_first_name = $first_name;
 		$this->_last_name = $last_name;
 		$this->_admin = $admin;
+        $this->_avatar = $avatar;
 	}
 	
 	public static function modification($newuser)
@@ -64,7 +66,7 @@ class User{
 	}
 	
 	
-	public static function inscription($mail, $password, $first_name, $last_name)
+	public static function inscription($mail, $password, $first_name, $last_name, $avatar)
 	{
 	try
 	{
@@ -78,10 +80,11 @@ class User{
 	}
 		
 		
-		$sql = $db->prepare("INSERT INTO users(mail, password, first_name, last_name) VALUES (:mail, :password, :first_name, :last_name)");
+		$sql = $db->prepare("INSERT INTO users(mail, password, first_name, last_name, avatar) VALUES (:mail, :password, :first_name, :last_name, :avatar)");
 		$valeursparam = array(":mail"=>$mail,":password"=>md5($password),
 		":first_name"=>$first_name,
-		":last_name"=>$last_name);
+		":last_name"=>$last_name,
+        ":avatar"=>$avatar);
 		$sql->execute($valeursparam);
 	}
 	
@@ -116,26 +119,23 @@ class User{
 		{
 			die('Erreur : ' . $e->getMessage());
 		}
-		$sql ="SELECT COUNT(*) AS nb, user_id, mail, password, first_name, last_name FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
+		$sql ="SELECT * FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
 		$result = $db->prepare($sql);
 		$columns = $result->execute();
 		$columns = $result->fetch();
-		$nb = $columns['nb'];
-		if($nb == 1)
-		{
-			$_SESSION['utilisateur_id'] = $columns['user_id'];
-			$_SESSION['mail'] = $columns['mail'];
-			$_SESSION['password'] = $columns['password'];
+		if ( sizeof($columns) > 0)
 
-			header('location: /seeit/');
-			exit;
-			
-		}
-
-		else
 		{
-			echo "vos identifiants sont erronés";
+				$_SESSION['utilisateur_id'] = $columns['user_id'];
+				$_SESSION['mail'] = $columns['mail'];
+				$_SESSION['password'] = $columns['password'];
+				if ($columns['admin'] == 1)
+				{
+					$_SESSION['admin'] = true;
+				}
+				return true;
 		}
+		return false;
 	}
 
 	
@@ -201,6 +201,10 @@ else{
 	{
 		return $this->_last_name ;
 	}
+    public function getAvatar()
+	{
+		return $this->_avatar ;
+	}
 	
 	public function getFirstName()
 	{
@@ -221,6 +225,10 @@ else{
 	{
 		$this->_last_name = $newlastname;
 	}
+    public function setAvatar($newavatar)
+	{
+		$this->_avatar = $avatar;
+	}
 	
 	public function setFirstName($newfirstname)
 	{
@@ -236,6 +244,6 @@ else{
 	{
 		$this->_password = $newpassword ;
 	}
-		
+
 
 	}?>

@@ -6272,6 +6272,17 @@ th.hide-for-touch {
   a:hover{
     color: white;
   }
+
   .center {
   text-align: center;
   margin-top: 17px;}
+
+.margin-top a{
+    margin-top:px;
+    color:#000000;
+    text-decoration:none;
+}
+.margin-top a:hover{
+    color:#24AAF0;
+}
+

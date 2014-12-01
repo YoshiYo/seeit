@@ -1,3 +1,4 @@
+
 	
 		<form method="post" class="row content " >
 		<div class="columns large-4 small-4">
@@ -23,4 +24,9 @@
 		<div class="columns2 large-3 small-3">
 		<input type="submit" name="envoyer" class="button"/>
 		</div>
+
+		<form method="post" >
+			<input type="text" name="newuser"/>
+			<input type="submit" name="envoyer"/>
+
 		</form>

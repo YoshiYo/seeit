@@ -91,7 +91,10 @@
     <?php } ?>
 <ul class="breadcrumbs"> 
   <li><a href="#">Home</a></li>
-  <li><a href="#">Features</a></li> 
+  <li><a href="/seeit/test_image">Tester son image</a></li> 
+  <?php if( isset($_SESSION['admin']) && $_SESSION['admin'] ):?> 
+    <li><a href="/seeit/admin">Admin</a></li> 
+  <?php endif ?>
 </ul>
 <?php 
 echo $yield;

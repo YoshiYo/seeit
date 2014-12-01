@@ -18,13 +18,29 @@
     $app->view()->setData('app', $app);
      });
 
+  $app->hook('verification.admin', function () use ($app) {
+    if( isset($_SESSION['admin']) && $_SESSION['admin'] )
+    {
+        return true;
+    }
+    else
+    {
+      $app->redirect($app->urlFor('accueil'));
+    }
+     });
+
+  $app->get('/admin', function () use ($app) {
+    $app->applyHook('verification.admin');
+    echo 'admin';
+  })->name('admin');
+
   $view = $app->view();
   $view->setTemplatesDirectory('view');
 
   $app->get('/', function () use ($app) {
     $app->render('index.php');
     $image = Image::takeAllImage();
-  });
+  })->name('accueil');
 
    $app->get('/connexion', function () use ($app) {
     $app->render('authentification/connexion.php');
@@ -32,11 +48,15 @@
   
 	$app->post('/connexion', function () use ($app) {    
 	$user = User::connexion($_POST['mail'], $_POST['password']);
+    if ($user = true)
+    {
+      echo "test admin reussi";
+    }
     $app->render('authentification/connexion.php');
 	});
 
 	$app->post('/inscription', function () use ($app) {
-	$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name']);
+	$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name'], $_POST['avatar']);
     $app->render('authentification/inscription.php');
 	});
 
@@ -59,8 +79,8 @@
     $app->render('authentification/modifiercompte.php');
 	});
 
-     $app->get('/test', function () use ($app) {
-    $app->render('images/show.php');
+     $app->get('/test_image', function () use ($app) {
+    $app->render('images/show_test.php');
 	});
 
   $app->get('/infocompte', function () use ($app) {
@@ -98,7 +118,6 @@
       $photo = Image::takeOneImage();
       $image = Image::takeAllImage();
   });
-
 
 
   $app->run();
