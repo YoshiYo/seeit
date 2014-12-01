@@ -18,13 +18,29 @@
     $app->view()->setData('app', $app);
      });
 
+  $app->hook('verification.admin', function () use ($app) {
+    if( isset($_SESSION['admin']) && $_SESSION['admin'] )
+    {
+        return true;
+    }
+    else
+    {
+      $app->redirect($app->urlFor('accueil'));
+    }
+     });
+
+  $app->get('/admin', function () use ($app) {
+    $app->applyHook('verification.admin');
+    echo 'admin';
+  })->name('admin');
+
   $view = $app->view();
   $view->setTemplatesDirectory('view');
 
   $app->get('/', function () use ($app) {
     $app->render('index.php');
     $image = Image::takeAllImage();
-  });
+  })->name('accueil');
 
    $app->get('/connexion', function () use ($app) {
     $app->render('authentification/connexion.php');
@@ -32,6 +48,10 @@
   
 	$app->post('/connexion', function () use ($app) {    
 	$user = User::connexion($_POST['mail'], $_POST['password']);
+    if ($user = true)
+    {
+      echo "test admin reussi";
+    }
     $app->render('authentification/connexion.php');
 	});
 
@@ -88,11 +108,6 @@
     $photo = Image::delFavoris();
   });
 
-
-   $app->get('/zone_admin', function () use ($app) {
-    $app->render('zone_admin/index.php');
-  });
-
     $app->get('/galerie', function () use ($app) {
     $app->render('galerie.php');
     $photo = Image::galerie();
@@ -104,10 +119,6 @@
       $image = Image::takeAllImage();
   });
 
-  $app->post('/zone_admin', function () use ($app) {    
-    $user = User::connexionadmin($_POST['mail'], $_POST['password']);
-    $app->render('zone_admin/index.php');
-  });
 
   $app->run();
 

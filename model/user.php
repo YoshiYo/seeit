@@ -119,61 +119,23 @@ class User{
 		{
 			die('Erreur : ' . $e->getMessage());
 		}
-		$sql ="SELECT COUNT(*) AS nb, user_id, mail, password, first_name, last_name FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
+		$sql ="SELECT * FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."'";
 		$result = $db->prepare($sql);
 		$columns = $result->execute();
 		$columns = $result->fetch();
-		$nb = $columns['nb'];
-		if($nb == 1)
-		{
-			$_SESSION['utilisateur_id'] = $columns['user_id'];
-			$_SESSION['mail'] = $columns['mail'];
-			$_SESSION['password'] = $columns['password'];
+		if ( sizeof($columns) > 0)
 
-			header('location: /seeit/');
-			exit;
-			
-		}
-
-		else
 		{
-			echo "vos identifiants sont erronés";
+				$_SESSION['utilisateur_id'] = $columns['user_id'];
+				$_SESSION['mail'] = $columns['mail'];
+				$_SESSION['password'] = $columns['password'];
+				if ($columns['admin'] == 1)
+				{
+					$_SESSION['admin'] = true;
+				}
+				return true;
 		}
-	}
-
-	public static function connexionadmin($mail, $password)
-	{
-	
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
-			$db->query('SET NAMES utf8');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		}
-		catch (Exception $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
-		$sql ="SELECT COUNT(*) AS nb, user_id, mail, password, first_name, last_name, admin FROM users WHERE password = '".md5($password)."' AND mail = '".$mail."' AND admin = 1";
-		$result = $db->prepare($sql);
-		$columns = $result->execute();
-		$columns = $result->fetch();
-		$nb = $columns['nb'];
-		if($nb == 1)
-		{
-			$_SESSION['utilisateur_id'] = $columns['user_id'];
-			$_SESSION['mail'] = $columns['mail'];
-			$_SESSION['password'] = $columns['password'];
-
-			header('location: /seeit/');
-			exit;
-			
-		}
-
-		else
-		{
-			echo "vos identifiants sont erronés";
-		}
+		return false;
 	}
 
 	
@@ -273,6 +235,6 @@ else{
 	{
 		$this->_password = $newpassword ;
 	}
-		
+
 
 	}?>
