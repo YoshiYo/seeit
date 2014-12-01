@@ -36,7 +36,7 @@
 	});
 
 	$app->post('/inscription', function () use ($app) {
-	$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name']);
+	$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name'], $_POST['avatar']);
     $app->render('authentification/inscription.php');
 	});
 

@@ -9,14 +9,16 @@ class User{
 	private $first_name;
 	private $last_name;
 	private $admin;
+    private $avatar;
 	
-	public function __construct($mail, $password, $first_name, $last_name, $admin)
+	public function __construct($mail, $password, $first_name, $last_name, $admin, $avatar)
 	{
 		$this->_mail = $mail;
 		$this->_password = $password;
 		$this->_first_name = $first_name;
 		$this->_last_name = $last_name;
 		$this->_admin = $admin;
+        $this->_avatar = $avatar;
 	}
 	
 	public static function modification($newuser)
@@ -64,7 +66,7 @@ class User{
 	}
 	
 	
-	public static function inscription($mail, $password, $first_name, $last_name)
+	public static function inscription($mail, $password, $first_name, $last_name, $avatar)
 	{
 	try
 	{
@@ -78,10 +80,11 @@ class User{
 	}
 		
 		
-		$sql = $db->prepare("INSERT INTO users(mail, password, first_name, last_name) VALUES (:mail, :password, :first_name, :last_name)");
+		$sql = $db->prepare("INSERT INTO users(mail, password, first_name, last_name, avatar) VALUES (:mail, :password, :first_name, :last_name, :avatar)");
 		$valeursparam = array(":mail"=>$mail,":password"=>md5($password),
 		":first_name"=>$first_name,
-		":last_name"=>$last_name);
+		":last_name"=>$last_name,
+        ":avatar"=>$avatar);
 		$sql->execute($valeursparam);
 	}
 	
@@ -192,6 +195,10 @@ else{
 	{
 		return $this->_last_name ;
 	}
+    public function getAvatar()
+	{
+		return $this->_avatar ;
+	}
 	
 	public function getFirstName()
 	{
@@ -211,6 +218,10 @@ else{
 	public function setLastName($newlastname)
 	{
 		$this->_last_name = $newlastname;
+	}
+    public function setAvatar($newavatar)
+	{
+		$this->_avatar = $avatar;
 	}
 	
 	public function setFirstName($newfirstname)
