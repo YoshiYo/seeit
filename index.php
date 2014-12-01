@@ -59,8 +59,8 @@
     $app->render('authentification/modifiercompte.php');
 	});
 
-     $app->get('/test', function () use ($app) {
-    $app->render('images/show.php');
+     $app->get('/test_image', function () use ($app) {
+    $app->render('images/show_test.php');
 	});
 
   $app->get('/infocompte', function () use ($app) {
@@ -88,7 +88,14 @@
     $photo = Image::delFavoris();
   });
 
+   $app->get('/zone_admin', function () use ($app) {
+    $app->render('zone_admin/index.php');
+  });
 
+  $app->post('/zone_admin', function () use ($app) {    
+    $user = User::connexionadmin($_POST['mail'], $_POST['password']);
+    $app->render('zone_admin/index.php');
+  });
 
   $app->run();
 

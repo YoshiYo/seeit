@@ -91,7 +91,7 @@
     <?php } ?>
 <ul class="breadcrumbs"> 
   <li><a href="#">Home</a></li>
-  <li><a href="#">Features</a></li> 
+  <li><a href="/seeit/test_image">Tester son image</a></li> 
 </ul>
 <?php 
 echo $yield;

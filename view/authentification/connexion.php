@@ -1,21 +1,3 @@
-<?php
-
-/*require_once "/autoload.inc.php";
-
-if(isset($_POST['envoyer']))
-{
-	$mail = $_POST['mail'];
-	$password = $_POST['password'];
-
-	$unuser = new user($mail, $password);
-
-	$unuser->connexion();
-}*/
-?>
-<!DOCTYPE html>
-<html>
-<head>
-</head>
 <body style="margin-top=-17px;">
 <form method="post" action="">
             <div class="row">
@@ -35,5 +17,3 @@ if(isset($_POST['envoyer']))
             </div>
           </div>
         </form>
-</body>
-</html>
