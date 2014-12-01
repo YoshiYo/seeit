@@ -238,6 +238,37 @@ else{
 	{
 		$this->_password = $newpassword ;
 	}
+
+	public static function userGalerie(){
+		try
+    {
+      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+      $db->query('SET NAMES utf8');
+    }
+    catch (Exception $e)
+    {
+      die('Erreur : ' . $e->getMessage());
+    }
+
+		$user_id = $_GET["user_id"];
+		$requete = $db->prepare("SELECT * from photos WHERE user_id = :user_id");
+		$valeursParam = array(":user_id" => $user_id);
+    	$requete->execute($valeursParam);
+    	$donnees = $requete ->fetch();
+
+    	while ($donnees = $requete->fetch())
+{
+
+    echo '
+        <div class="small-2 large-4 columns content_img">
+          <img src="'.$donnees["photo_src"].'"/>
+          <div class="hover_img">
+            <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"><p class="titre">'.$donnees["title"].'</p></a>
+            <a href="/seeit/addfavoris?photo_id='.$donnees["photo_id"].'"> <div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
+          </div>
+        </div>';
+  }
+	}
 		
 
 	}?>

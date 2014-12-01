@@ -76,6 +76,7 @@
      $app->post('/recherche', function () use ($app) {
     $app->render('recherche.php');
     $recherche = Recherche::search_photo($_POST['s']);
+    $recherche = Recherche::search_user($_POST['s']);
   });
 
      $app->get('/addfavoris', function () use ($app) {
@@ -91,6 +92,11 @@
     $app->get('/galerie', function () use ($app) {
     $app->render('galerie.php');
     $photo = Image::galerie();
+  });
+
+    $app->get('/user', function () use ($app) {
+    $app->render('user.php');
+    $photo = User::userGalerie();
   });
 
      $app->get('/image', function () use ($app) {
