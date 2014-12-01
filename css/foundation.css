@@ -6195,7 +6195,7 @@ th.hide-for-touch {
     display: table-cell !important; } }
 
   .content_img{
-    height: 250px;
+    height: 15em;
   } 
 
   .hover_img {
@@ -6246,9 +6246,27 @@ th.hide-for-touch {
     background-color: rgba(255, 255, 255, 0.81);
     padding: 10px;
     border-radius: 5px;
+    margin-top: 40px;
 
   }
 
   .content_img img{
     box-shadow: 2px 2px 5px #222222;
   }
+
+  .one_img{
+    width: 100%;
+  }
+
+  a{color: white;}
+  a:hover{
+    color: white;
+  }
+.margin-top a{
+    margin-top:px;
+    color:#000000;
+    text-decoration:none;
+}
+.margin-top a:hover{
+    color:#24AAF0;
+}

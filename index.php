@@ -36,7 +36,7 @@
 	});
 
 	$app->post('/inscription', function () use ($app) {
-	$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name']);
+	$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name'], $_POST['avatar']);
     $app->render('authentification/inscription.php');
 	});
 
@@ -88,8 +88,20 @@
     $photo = Image::delFavoris();
   });
 
+
    $app->get('/zone_admin', function () use ($app) {
     $app->render('zone_admin/index.php');
+  });
+
+    $app->get('/galerie', function () use ($app) {
+    $app->render('galerie.php');
+    $photo = Image::galerie();
+  });
+
+     $app->get('/image', function () use ($app) {
+      $app->render('image.php');
+      $photo = Image::takeOneImage();
+      $image = Image::takeAllImage();
   });
 
   $app->post('/zone_admin', function () use ($app) {    

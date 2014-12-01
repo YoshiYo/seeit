@@ -46,7 +46,7 @@
               <li><a href="#">Catégorie</a></li>
             </ul>
           </li>
-          <li class=""><a href="/seeit/test">Ma Galerie</a></li>
+          <li class=""><a href="/seeit/galerie">Ma Galerie</a></li>
         </ul>
       </section>
     </nav>
