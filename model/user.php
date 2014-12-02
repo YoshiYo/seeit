@@ -67,7 +67,7 @@ class User{
 	
 	
 	public static function inscription($mail, $password, $first_name, $last_name, $avatar)
-	{
+	{/*
 	try
 	{
 		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
@@ -98,8 +98,8 @@ class User{
 			$unuser = new user($mail, $password);
 
 	$unuser->connexion();
-	}
 	}*/
+	}
 	
 
 	
@@ -275,7 +275,8 @@ else{
             <a href="/seeit/addfavoris?photo_id='.$donnees["photo_id"].'"> <div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
           </div>
         </div>';
-  }
+  
 	}
-
-	}?>
+}
+}
+?>
