@@ -182,7 +182,7 @@ $row = $result->fetch();
 		echo "<a href='/seeit/modifiercompte' class='button expand' style='margin-top: 68px' >Modification du compte</a>";
 		echo "</div>";
 		echo "<div class='small-4 large-4 columns'>";
-		echo "<img src='".$row["avatar"]."' id='photoavatar'/>" ;
+		echo "<img src='img/".$row["avatar"]."' id='photoavatar'/>" ;
 		echo "</div>";
 		echo "</div>";
 
