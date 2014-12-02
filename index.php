@@ -55,8 +55,12 @@
     $app->render('authentification/connexion.php');
 	});
 
+  $app->get('/inscription', function () use ($app) {
+  $app->render('authentification/inscription.php');
+  });
+
 	$app->post('/inscription', function () use ($app) {
-	$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name'], $_POST['avatar']);
+	//$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name'], $_POST['avatar']);
     $app->render('authentification/inscription.php');
 	});
 
@@ -64,10 +68,6 @@
    $app->get('/images/:image_id', function ($image_id) use ($app) { // $image_id récupère l'id de l'image que l'on va récuperer
     $app->render('images/show.php');                                 // Nous pouvons très bien nous mettre sur slash, et dès que l'on clique
                                                                       // sur une image, on récupère l'id
-	});
-
-    $app->get('/inscription', function () use ($app) {
-    $app->render('authentification/inscription.php');
 	});
   
    $app->get('/modifiercompte', function () use ($app) {
@@ -125,6 +125,14 @@
       $image = Image::takeAllImage();
   });
 
+      $app->get('/importer', function () use ($app) {       
+      $image = Image::addImage();
+      $app->render('test.php');
+  });
+      $app->post('/importer', function () use ($app) {        
+      $image = Image::addImage();
+      $app->render('test.php');
+  });
 
   $app->run();
 

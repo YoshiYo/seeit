@@ -34,7 +34,7 @@
 
 <!-- Left Nav Section -->
         <ul class="left">
-          <li class="active"><a href="/seeit/test">Importer</a></li>
+          <li class="active"><a href="/seeit/importer">Importer</a></li>
           <li class="has-dropdown">
             <a href="#">Explorer</a>
             <ul class="dropdown">
