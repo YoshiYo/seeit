@@ -75,8 +75,8 @@
 	});
   
     $app->post('/modifiercompte', function () use ($app) {
-	$user = User::modification($_POST['newuser']);
     $app->render('authentification/modifiercompte.php');
+		$user = User::modification($_POST['newuser']);
 	});
 
      $app->get('/test_image', function () use ($app) {
