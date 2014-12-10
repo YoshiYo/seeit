@@ -209,7 +209,7 @@ while ($donnees = $requete->fetch())
         </div>';
   }}
 
-  public static function takeImageCategorie ($categorie)
+  public static function takeImageCategorie ()
   {
     //Select * From photos Where categorie = $categorie
     try
@@ -222,46 +222,26 @@ while ($donnees = $requete->fetch())
       die('Erreur : ' . $e->getMessage());
     }
 
-    $requete = $db->prepare("SELECT * from photos WHERE categorie = :categorie)");
-    $valeursParam = array(":categorie" => $categorie);
+    $requete = $db->prepare("SELECT * from photos WHERE categorie = :categorie");
+    $valeursParam = array(":categorie" => $_GET['categorie']);
     $requete->execute($valeursParam);
+
+     // On affiche chaque entrée une à une
+    echo "
+    <div class='row content'>
+    <h3>EXPLORER : </h3>";
+while ($donnees = $requete->fetch())
+{
+
+    echo '
+        <div class="small-2 large-4 columns content_img">
+          <img src="img/'.$donnees["photo_src"].'"/>
+          <div class="hover_img">
+            <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"><p class="titre">'.$donnees["title"].'</p></a>
+            <a href="/seeit/addfavoris?photo_id='.$donnees["photo_id"].'"> <div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
+          </div>
+        </div>';
   }
-
-  public function takeImageSize ($size)
-  {
-    //Select * From photos Where size = $size
-    try
-    {
-      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
-      $db->query('SET NAMES utf8');
-    }
-    catch (Exception $e)
-    {
-      die('Erreur : ' . $e->getMessage());
-    }
-
-    $requete = $db->prepare("SELECT * from photos WHERE size = :size)");
-    $valeursParam = array(":size" => $size);
-    $requete->execute($valeursParam);
-
-  }
-
-  public function takeImageColor ($color)
-  {
-    //Select * From photos Where color = $color
-    try
-    {
-      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
-      $db->query('SET NAMES utf8');
-    }
-    catch (Exception $e)
-    {
-      die('Erreur : ' . $e->getMessage());
-    }
-
-    $requete = $db->prepare("SELECT * from photos WHERE color = :color)");
-    $valeursParam = array(":color" => $color);
-    $requete->execute($valeursParam);
   }
 
   public static function addImage ()
@@ -329,8 +309,8 @@ if(!empty($_POST))
               die('Erreur : ' . $e->getMessage());
             }
 
-            $sql = $db->prepare("INSERT INTO photos(photo_src) VALUES (:photo_src)");
-            $valeursparam = array(":photo_src"=>$nomImage);
+            $sql = $db->prepare("INSERT INTO photos(photo_src, title, description, categorie, user_id) VALUES (:photo_src, :title, :description, :categorie, :user_id)");
+            $valeursparam = array(":photo_src"=>$nomImage, ":title"=>$_POST['title'], ":description"=>$_POST['description'],":categorie"=>$_POST['categorie'],":user_id"=>$_SESSION['utilisateur_id']);
             $sql->execute($valeursparam);
  
             // Si c'est OK, on teste l'upload

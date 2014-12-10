@@ -134,6 +134,11 @@
       $app->render('test.php');
   });
 
+      $app->get('/categorie', function () use ($app) {
+      $app->render('categorie.php');
+      $image = Image::takeImageCategorie();
+  });
+
   $app->run();
 
 

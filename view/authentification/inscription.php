@@ -120,20 +120,29 @@ if(!empty($_POST))
       }
     ?>
     <!-- Debut du formulaire -->
-   <form enctype="multipart/form-data" action="" method="post">
-    <fieldset>
-        <legend>Formulaire</legend>
-        <input type="text" name="mail"/>
-        <!--<input type="text" name="pseudo"/>-->
-        <input type="password" name="password"/>
-        <input type="text" name="last_name"/>
-        <input type="text" name="first_name"/>
+
+    <div class="row content">
+      <form enctype="multipart/form-data" action="" method="post">
+        <div class="large-4 columns">
+          <label>E-mail :<input required type="text" name="mail"/>
+        </div>
+        <div class="large-4 columns">
+          <label>Mot de passe :<input required type="password" name="password"/>
+        </div>
+        <div class="large-4 columns">
+          <label>Nom :<input required type="text" name="last_name"/>
+        </div>
+        <div class="large-4 columns">
+          <label>Prenom :<input required type="text" name="first_name"/>
+        </div> 
+        <div class="large-4 columns">
           <p>
-            <label for="fichier_a_uploader" title="Recherchez le fichier à uploader !">Envoyer le fichier :</label>
+            <label for="fichier_a_uploader" title="Recherchez le fichier à uploader !">Avatar :</label>
             <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_SIZE; ?>" />
-            <input name="fichier" type="file" id="fichier_a_uploader" />
-            <input type="submit" name="submit" value="Uploader" />
+            <input required name="fichier" type="file" id="fichier_a_uploader" />
           </p>
-      </fieldset>
-    </form>
+           <input required type="submit" name="submit" value="M'inscrire" class="button small" />
+        </div>
+      </form>
+    </div>
     <!-- Fin du formulaire -->
