@@ -76,12 +76,12 @@
           <li class="has-dropdown">
             <a href="#">Explorer</a>
             <ul class="dropdown">
-              <li><a href="#">Paysage</a></li>
-              <li><a href="#">Art</a></li>
-              <li><a href="#">Animal</a></li>
-              <li><a href="#">Sport</a></li>
-              <li><a href="#">Immobilier</a></li>
-              <li><a href="#">Musique</a></li>
+              <li><a href="/seeit/categorie?categorie=paysage">Paysage</a></li>
+              <li><a href="/seeit/categorie?categorie=art">Art</a></li>
+              <li><a href="/seeit/categorie?categorie=animal#">Animal</a></li>
+              <li><a href="/seeit/categorie?categorie=sport">Sport</a></li>
+              <li><a href="/seeit/categorie?categorie=immobilier">Immobilier</a></li>
+              <li><a href="/seeit/categorie?categorie=musique">Musique</a></li>
             </ul>
           </li>
         </ul>
@@ -91,12 +91,12 @@
     <?php } ?>
 <ul class="breadcrumbs"> 
 
-  <li><a href="#">Paysage</a></li>
-  <li><a href="#">Art</a></li>
-  <li><a href="#">Animal</a></li>
-  <li><a href="#">Sport</a></li> 
-  <li><a href="#">Immobilier</a></li>
-  <li><a href="#">Musique</a></li> 
+  <li><a href="/seeit/categorie?categorie=paysage">Paysage</a></li>
+  <li><a href="/seeit/categorie?categorie=art">Art</a></li>
+  <li><a href="/seeit/categorie?categorie=animal">Animal</a></li>
+  <li><a href="/seeit/categorie?categorie=sport">Sport</a></li> 
+  <li><a href="/seeit/categorie?categorie=immobilier">Immobilier</a></li>
+  <li><a href="/seeit/categorie?categorie=musique">Musique</a></li> 
 
   <li><a href="#">Home</a></li>
   <li><a href="/seeit/test_image">Tester son image</a></li> 
