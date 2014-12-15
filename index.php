@@ -31,8 +31,14 @@
 
   $app->get('/admin', function () use ($app) {
     $app->applyHook('verification.admin');
+    $app->render('zone_admin/index.php');
     echo 'admin';
   })->name('admin');
+
+  $app->post('/admin', function () use ($app) {
+    $app->render('zone_admin/index.php');
+    $user = User::modificationadmin();
+  });
 
   $view = $app->view();
   $view->setTemplatesDirectory('view');

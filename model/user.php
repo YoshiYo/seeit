@@ -20,6 +20,26 @@ class User{
 		$this->_admin = $admin;
         $this->_avatar = $avatar;
 	}
+
+	public static function modificationadmin()
+	{
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
+			
+		}
+		catch (Exception $e)
+		{
+				die('Erreur : ' . $e->getMessage());
+		}
+		$sql = $db->prepare('SELECT * FROM users ORDER BY user_id');
+		$sql->execute();
+		echo '<div class="row content">';
+		while ($user = $sql->fetch()) {
+			echo $user["user_id"],' - '.$user["last_name"].'</br>';
+		}
+		echo '</div>';
+	}
 	
 	public static function modification($newuser)
 	{
