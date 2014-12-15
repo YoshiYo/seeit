@@ -8,6 +8,7 @@
   session_start();
 
 
+
   $app = new \Slim\Slim(array(
     'view' => '\Slim\LayoutView', // I activate slim layout component
     'layout' => 'layouts/main.php' // I define my main layout

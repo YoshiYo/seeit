@@ -1,5 +1,5 @@
 <?php 
-
+	define('MAX_SIZE', 1000000000);    // Taille max en octets du fichier
 class Image {
 
 	private $photo_id;
@@ -247,7 +247,6 @@ while ($donnees = $requete->fetch())
   {
    // Constantes
 define('TARGET', 'img/');    // Repertoire cible
-define('MAX_SIZE', 1000000000);    // Taille max en octets du fichier
 define('WIDTH_MAX', 1000000000);    // Largeur max de l'image en pixels
 define('HEIGHT_MAX', 1000000000);    // Hauteur max de l'image en pixels
  
@@ -357,7 +356,6 @@ public static function modifyImage()
 {
 // Constantes
 define('TARGET', 'img/');    // Repertoire cible
-define('MAX_SIZE', 1000000000);    // Taille max en octets du fichier
 define('WIDTH_MAX', 1000000000);    // Largeur max de l'image en pixels
 define('HEIGHT_MAX', 1000000000);    // Hauteur max de l'image en pixels
  
