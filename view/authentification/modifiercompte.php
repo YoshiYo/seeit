@@ -1,5 +1,4 @@
 
-	
 		<form method="post" class="row content " >
 		<div class="columns large-4 small-4">
 			<label for="newuser">Votre nouveau nom :</label>

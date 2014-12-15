@@ -96,6 +96,8 @@ class User{
 					$columns = $result->execute();
 					echo "mot de passe changé" ;
 				}
+			
+
 			}else{ echo "Ancien mot de passe érroné ";} 
 			}
 
@@ -220,7 +222,7 @@ $row = $result->fetch();
 		echo "<a href='/seeit/modifiercompte' class='button expand' style='margin-top: 68px' >Modification du compte</a>";
 		echo "</div>";
 		echo "<div class='small-4 large-4 columns'>";
-		echo "<img src='img/".$row["avatar"]."' id='photoavatar'/>" ;
+		echo "<a href='/seeit/modifierimage'><img src='img/".$row["avatar"]."' id='photoavatar'/></a>" ;
 		echo "</div>";
 		echo "</div>";
 
