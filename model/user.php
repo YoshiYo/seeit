@@ -103,7 +103,7 @@ class User{
 	
 	
 	public static function inscription($mail, $password, $first_name, $last_name, $avatar)
-	{/*
+	{
 	try
 	{
 		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
@@ -135,7 +135,8 @@ class User{
 
 	$unuser->connexion();
 	}*/
-	}
+	
+
 	
 
 	

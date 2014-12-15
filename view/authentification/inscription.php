@@ -143,6 +143,12 @@ if(!empty($_POST))
           </p>
            <input required type="submit" name="submit" value="M'inscrire" class="button small" />
         </div>
+            <div class="margin-top large-12 columns">
+          <p>
+            <a href="/seeit/connexion">Si vous êtes déjà incrit, cliquez ici pour vous connectez.</a>
+          </p>
+           
+        </div>
       </form>
     </div>
     <!-- Fin du formulaire -->
