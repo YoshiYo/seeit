@@ -44,15 +44,16 @@
 
    $app->get('/connexion', function () use ($app) {
     $app->render('authentification/connexion.php');
-  });
+  })->name('connexion');
   
 	$app->post('/connexion', function () use ($app) {    
 	$user = User::connexion($_POST['mail'], $_POST['password']);
     if ($user = true)
     {
-      echo "test admin reussi";
+       // echo "test admin reussi";
     }
     $app->render('authentification/connexion.php');
+    $app->redirect($app->urlFor('accueil'));  
 	});
 
   $app->get('/inscription', function () use ($app) {
@@ -62,6 +63,7 @@
 	$app->post('/inscription', function () use ($app) {
 	//$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name'], $_POST['avatar']);
     $app->render('authentification/inscription.php');
+    $app->redirect($app->urlFor('connexion'));
 	});
 
 

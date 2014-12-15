@@ -1,16 +1,13 @@
-<a href="" id="goForIt"></a>
-		<div class="">
-			Choisissez votre fichier : </br>
-			( Attention, photo FishEye attendu )
-		<div class="row content">
-			<h2>Choisissez votre fichier :</h2>
-			(Attention, photo FishEye attendu)</br>Si vous avez un écran noir, l'image ne correspond pas aux conditions d'insertion.</br></br>
+<a href="stest.jpg" id="goForIt">makeIt</a>
+		<div class="right">
+			load from file: 
 			<input type="file" id="loaditup" />
 		</div>
 		<div id="sphere" style="width: 100%; height: 600px;"></div>
+		<a href="https://github.com/kennydude/">fork me on github</a>
 		
-		<script type="text/javascript" src="js/three.min.js"></script>
-		<script async="true" onload="setup();" type="text/javascript" src="js/sphere.js"></script>
+		<script type="text/javascript" src="http://threejs.org/build/three.min.js"></script>
+		<script async="true" onload="setup();" type="text/javascript" src="lib/sphere.js"></script>
 		<script type="text/javascript">
 			function setup(){
 				document.getElementById("goForIt").onclick = function(){

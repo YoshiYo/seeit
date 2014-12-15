@@ -2,9 +2,6 @@
 		<div class="">
 			Choisissez votre fichier : </br>
 			( Attention, photo FishEye attendu )
-		<div class="row content">
-			<h2>Choisissez votre fichier :</h2>
-			(Attention, photo FishEye attendu)</br>Si vous avez un écran noir, l'image ne correspond pas aux conditions d'insertion.</br></br>
 			<input type="file" id="loaditup" />
 		</div>
 		<div id="sphere" style="width: 100%; height: 600px;"></div>
