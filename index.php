@@ -75,8 +75,8 @@
 	});
   
     $app->post('/modifiercompte', function () use ($app) {
-	$user = User::modification($_POST['newuser']);
     $app->render('authentification/modifiercompte.php');
+		$user = User::modification($_POST['newuser']);
 	});
 
      $app->get('/test_image', function () use ($app) {
@@ -132,6 +132,11 @@
       $app->post('/importer', function () use ($app) {        
       $image = Image::addImage();
       $app->render('test.php');
+  });
+
+      $app->get('/categorie', function () use ($app) {
+      $app->render('categorie.php');
+      $image = Image::takeImageCategorie();
   });
 
   $app->run();

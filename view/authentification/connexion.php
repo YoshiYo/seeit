@@ -1,4 +1,3 @@
-<body style="margin-top=-17px;">
 <form method="post" action="">
             <div class="row content">
               <div class="large-4 columns">

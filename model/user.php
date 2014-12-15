@@ -36,31 +36,47 @@ class User{
 		if(!empty($_POST["envoyer"]))
 		{
 			$id = $_SESSION['utilisateur_id'] ;
-		
-			$newuser = $_POST["newuser"];
-		
-			$sql  = 'UPDATE users SET last_name="'.$newuser.'" WHERE user_id = '.$id.' ';
-			$result = $db->prepare($sql);
-			$columns = $result->execute();
-		}
-		if(!empty($_SESSION))
-		{
-			$id = $_SESSION['utilisateur_id'] ;
-			$sql = 'SELECT last_name ,first_name , mail, password FROM users WHERE user_id = '.$id.' ';
-			$result = $db->prepare($sql);
-			$row = $result->execute();
-			$row = $result->fetch();
-
-			echo "Votre nom :".$row["last_name"].'</br>' ;
-			echo "Votre prenom :".$row["first_name"].'</br>' ;
-			echo "Votre mail :".$row["mail"].'</br>' ;
-			echo "Votre mdp :".$row["password"].'</br>' ;
-	
-	
-		}
-		else{
-			echo "pas de résultat" ;
-		}
+			$sqlf = 'SELECT last_name ,first_name , mail, password FROM users WHERE user_id = '.$id.' ';
+			$resultf = $db->prepare($sqlf);
+			$rowf = $resultf->execute();
+			$rowf = $resultf->fetch();
+			
+			if(md5($_POST["oldpassword"]) == $rowf["password"])
+			{
+				if(!empty($_POST["newuser"]))
+				{
+					$newuser = $_POST["newuser"];
+					$sql  = 'UPDATE users SET last_name="'.$newuser.'" WHERE user_id = '.$id.' ';
+					$result = $db->prepare($sql);
+					$columns = $result->execute();
+					echo "nom changé" ; 
+				}
+				if(!empty($_POST["newuserpr"]))
+				{
+					$newuserpr = $_POST["newuserpr"];
+					$sql2  = 'UPDATE users SET first_name="'.$newuserpr.'" WHERE user_id = '.$id.' ';
+					$result2 = $db->prepare($sql2);
+					$columns2 = $result2->execute();
+					echo "prénom changé" ;
+				}
+				if(!empty($_POST["newmail"]))
+				{
+					$newmail = $_POST["newmail"];
+					$resetmail  = 'UPDATE users SET mail="'.$newmail.'" WHERE user_id = '.$id.' ';
+					$result3 = $db->prepare($resetmail);
+					$columns3 = $result3->execute();
+					echo "mail changé";
+				}
+				if(!empty($_POST["newpassword"]))
+				{
+					$newpassword = $_POST["newpassword"];
+					$sql  = 'UPDATE users SET password="'.md5($newpassword).'" WHERE user_id = '.$id.' ';
+					$result = $db->prepare($sql);
+					$columns = $result->execute();
+					echo "mot de passe changé" ;
+				}
+			}else{ echo "Ancien mot de passe érroné ";} 
+			}
 
 		
 	}
