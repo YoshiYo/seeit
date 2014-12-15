@@ -49,8 +49,9 @@ body {
   font-size: 100%; }
 
 body {
-  background-image: url('../img/back.jpg');
+  background-image: url('../img/paysages-002.jpg');
   background-attachment: fixed;
+background-size:100%;
   color: #222222;
   padding: 0;
   margin: 0;
@@ -6285,4 +6286,5 @@ th.hide-for-touch {
 .margin-top a:hover{
     color:#24AAF0;
 }
+
 
