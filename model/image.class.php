@@ -125,9 +125,9 @@ if(isset($_SESSION['mail'])){
     {
       echo '
         <div class="small-2 large-4 columns content_img">
-          <img class="favoris" src="'.$donnees2["photo_src"].'"/>
+          <img class="favoris" src="img/'.$donnees2["photo_src"].'"/>
           <div class="hover_img">
-            <a href="/seeit/image?photo_id='.$donnees2["photo_id"].'"> <p class="titre">'.$donnees["title"].'</p></a>
+            <a href="/seeit/image?photo_id="'.$donnees2["photo_id"].'"> <p class="titre">'.$donnees["title"].'</p></a>
             <a href="/seeit/delfavoris?photo_id='.$donnees2["photo_id"].'"><div class="fav"><img class="ico_del_fav" src="img/fav.png" style="width:100%;"></div></a>
           </div>
         </div>';
@@ -143,9 +143,9 @@ while ($donnees = $requete->fetch())
 
     echo '
         <div class="small-2 large-4 columns content_img">
-          <img src="'.$donnees["photo_src"].'"/>
+          <img src="img/'.$donnees["photo_src"].'"/>
           <div class="hover_img">
-            <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"> p class="titre">'.$donnees["title"].'</p></a>
+            <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"><p class="titre">'.$donnees["title"].'</p></a>
             <a href="/seeit/addfavoris?photo_id='.$donnees["photo_id"].'"><div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
           </div>
         </div>';
@@ -182,7 +182,7 @@ if(isset($_SESSION['mail'])){
     {
       echo '
         <div class="small-2 large-4 columns content_img">
-         <img class="favoris" src="'.$donnees2["photo_src"].'"/>
+         <img class="favoris" src="img/'.$donnees2["photo_src"].'"/>
           <div class="hover_img">
             <a href="/seeit/image?photo_id='.$donnees2["photo_id"].'"><p class="titre">'.$donnees2["title"].'</p></a>
             <a href="/seeit/delfavoris?photo_id='.$donnees2["photo_id"].'"><div class="fav"><img class="ico_del_fav" src="img/fav.png" style="width:100%;"></div></a>
@@ -201,7 +201,7 @@ while ($donnees = $requete->fetch())
 
     echo '
         <div class="small-2 large-4 columns content_img">
-          <img src="'.$donnees["photo_src"].'"/>
+          <img src="img/'.$donnees["photo_src"].'"/>
           <div class="hover_img">
             <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"><p class="titre">'.$donnees["title"].'</p></a>
             <a href="/seeit/addfavoris?photo_id='.$donnees["photo_id"].'"> <div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
@@ -209,7 +209,7 @@ while ($donnees = $requete->fetch())
         </div>';
   }}
 
-  public static function takeImageCategorie ($categorie)
+  public static function takeImageCategorie ()
   {
     //Select * From photos Where categorie = $categorie
     try
@@ -222,71 +222,138 @@ while ($donnees = $requete->fetch())
       die('Erreur : ' . $e->getMessage());
     }
 
-    $requete = $db->prepare("SELECT * from photos WHERE categorie = :categorie)");
-    $valeursParam = array(":categorie" => $categorie);
-    $requete->execute($valeursParam);
-  }
-
-  public function takeImageSize ($size)
-  {
-    //Select * From photos Where size = $size
-    try
-    {
-      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
-      $db->query('SET NAMES utf8');
-    }
-    catch (Exception $e)
-    {
-      die('Erreur : ' . $e->getMessage());
-    }
-
-    $requete = $db->prepare("SELECT * from photos WHERE size = :size)");
-    $valeursParam = array(":size" => $size);
+    $requete = $db->prepare("SELECT * from photos WHERE categorie = :categorie");
+    $valeursParam = array(":categorie" => $_GET['categorie']);
     $requete->execute($valeursParam);
 
+     // On affiche chaque entrée une à une
+    echo "
+    <div class='row content'>
+    <h3>EXPLORER : </h3>";
+while ($donnees = $requete->fetch())
+{
+
+    echo '
+        <div class="small-2 large-4 columns content_img">
+          <img src="img/'.$donnees["photo_src"].'"/>
+          <div class="hover_img">
+            <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"><p class="titre">'.$donnees["title"].'</p></a>
+            <a href="/seeit/addfavoris?photo_id='.$donnees["photo_id"].'"> <div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
+          </div>
+        </div>';
+  }
   }
 
-  public function takeImageColor ($color)
+  public static function addImage ()
   {
-    //Select * From photos Where color = $color
-    try
-    {
-      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
-      $db->query('SET NAMES utf8');
-    }
-    catch (Exception $e)
-    {
-      die('Erreur : ' . $e->getMessage());
-    }
-
-    $requete = $db->prepare("SELECT * from photos WHERE color = :color)");
-    $valeursParam = array(":color" => $color);
-    $requete->execute($valeursParam);
+   // Constantes
+define('TARGET', 'img/');    // Repertoire cible
+define('MAX_SIZE', 1000000000);    // Taille max en octets du fichier
+define('WIDTH_MAX', 1000000000);    // Largeur max de l'image en pixels
+define('HEIGHT_MAX', 1000000000);    // Hauteur max de l'image en pixels
+ 
+// Tableaux de donnees
+$tabExt = array('jpg','gif','png','jpeg');    // Extensions autorisees
+$infosImg = array();
+ 
+// Variables
+$extension = '';
+$message = '';
+$nomImage = '';
+ 
+/************************************************************
+ * Creation du repertoire cible si inexistant
+ *************************************************************/
+if( !is_dir(TARGET) ) {
+  if( !mkdir(TARGET, 0755) ) {
+    exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous diposiez des droits suffisants pour le faire ou créez le manuellement !');
   }
-
-  public function addImage ($photo_src, $user_id, $title, $description, $categorie, $size, $color)
+}
+ 
+/************************************************************
+ * Script d'upload
+ *************************************************************/
+if(!empty($_POST))
+{
+  // On verifie si le champ est rempli
+  if( !empty($_FILES['fichier']['name']) )
   {
-    try
+    // Recuperation de l'extension du fichier
+    $extension  = pathinfo($_FILES['fichier']['name'], PATHINFO_EXTENSION);
+ 
+    // On verifie l'extension du fichier
+    if(in_array(strtolower($extension),$tabExt))
     {
-      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
-      $db->query('SET NAMES utf8');
+      // On recupere les dimensions du fichier
+      $infosImg = getimagesize($_FILES['fichier']['tmp_name']);
+ 
+      // On verifie le type de l'image
+      if($infosImg[2] >= 1 && $infosImg[2] <= 14)
+      {
+        // On verifie les dimensions et taille de l'image
+        if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['fichier']['tmp_name']) <= MAX_SIZE))
+        {
+          // Parcours du tableau d'erreurs
+          if(isset($_FILES['fichier']['error']) 
+            && UPLOAD_ERR_OK === $_FILES['fichier']['error'])
+          {
+            // On renomme le fichier
+            $nomImage = md5(uniqid()) .'.'. $extension;
+            try
+            {
+              $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+              $db->query('SET NAMES utf8');
+            }
+            catch (Exception $e)
+            {
+              die('Erreur : ' . $e->getMessage());
+            }
+
+            $sql = $db->prepare("INSERT INTO photos(photo_src, title, description, categorie, user_id) VALUES (:photo_src, :title, :description, :categorie, :user_id)");
+            $valeursparam = array(":photo_src"=>$nomImage, ":title"=>$_POST['title'], ":description"=>$_POST['description'],":categorie"=>$_POST['categorie'],":user_id"=>$_SESSION['utilisateur_id']);
+            $sql->execute($valeursparam);
+ 
+            // Si c'est OK, on teste l'upload
+            if(move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET.$nomImage))
+            {
+             $message = 1;
+            }
+            else
+            {
+              // Sinon on affiche une erreur systeme
+              $message = 'Problème lors de l\'upload !';
+            }
+          }
+          else
+          {
+            $message = 'Une erreur interne a empêché l\'uplaod de l\'image';
+          }
+        }
+        else
+        {
+          // Sinon erreur sur les dimensions et taille de l'image
+          $message = 'Erreur dans les dimensions de l\'image !';
+        }
+      }
+      else
+      {
+        // Sinon erreur sur le type de l'image
+        $message = 'Le fichier à uploader n\'est pas une image !';
+      }
     }
-    catch (Exception $e)
+    else
     {
-      die('Erreur : ' . $e->getMessage());
+      // Sinon on affiche une erreur pour l'extension
+      $message = 'L\'extension du fichier est incorrecte !';
     }
-
-    $photo_src = $_POST['photo_src'];
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $categorie = $_POST['categorie'];
-    $size = $_POST['size'];
-    $color = $_POST['color'];
-
-    $requete = $db->prepare("INSERT INTO  `seeit`.`photos` (`photo_src` ,`title` ,`description` ,`categorie`, 'size', 'color') VALUES (:photo_src, :title, :description, :categorie, :size, :color)");
-    $valeurParam = array(':photo_src'=> $photo_src,':title'=>$title, ':description'=>$description, ':categorie'=>$categorie, ':size'=>$size, ':color'=>$color);
-    $requete->execute($valeurParam);
   }
+  else
+  {
+    // Sinon on affiche une erreur pour le champ vide
+    $message = 'Veuillez remplir le formulaire svp !';
+  }
+}
+}
 
   public static function addFavoris()
   {

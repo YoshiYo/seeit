@@ -56,8 +56,12 @@
     $app->redirect($app->urlFor('accueil'));  
 	});
 
+  $app->get('/inscription', function () use ($app) {
+  $app->render('authentification/inscription.php');
+  });
+
 	$app->post('/inscription', function () use ($app) {
-	$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name'], $_POST['avatar']);
+	//$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name'], $_POST['avatar']);
     $app->render('authentification/inscription.php');
     $app->redirect($app->urlFor('connexion'));
 	});
@@ -67,18 +71,14 @@
     $app->render('images/show.php');                                 // Nous pouvons très bien nous mettre sur slash, et dès que l'on clique
                                                                       // sur une image, on récupère l'id
 	});
-
-    $app->get('/inscription', function () use ($app) {
-    $app->render('authentification/inscription.php');
-	});
   
    $app->get('/modifiercompte', function () use ($app) {
     $app->render('authentification/modifiercompte.php');
 	});
   
     $app->post('/modifiercompte', function () use ($app) {
-	$user = User::modification($_POST['newuser']);
     $app->render('authentification/modifiercompte.php');
+		$user = User::modification($_POST['newuser']);
 	});
 
      $app->get('/test_image', function () use ($app) {
@@ -98,6 +98,7 @@
      $app->post('/recherche', function () use ($app) {
     $app->render('recherche.php');
     $recherche = Recherche::search_photo($_POST['s']);
+    $recherche = Recherche::search_user($_POST['s']);
   });
 
      $app->get('/addfavoris', function () use ($app) {
@@ -115,12 +116,30 @@
     $photo = Image::galerie();
   });
 
+    $app->get('/user', function () use ($app) {
+    $app->render('user.php');
+    $photo = User::userGalerie();
+  });
+
      $app->get('/image', function () use ($app) {
       $app->render('image.php');
       $photo = Image::takeOneImage();
       $image = Image::takeAllImage();
   });
 
+      $app->get('/importer', function () use ($app) {       
+      $image = Image::addImage();
+      $app->render('test.php');
+  });
+      $app->post('/importer', function () use ($app) {        
+      $image = Image::addImage();
+      $app->render('test.php');
+  });
+
+      $app->get('/categorie', function () use ($app) {
+      $app->render('categorie.php');
+      $image = Image::takeImageCategorie();
+  });
 
   $app->run();
 

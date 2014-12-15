@@ -36,38 +36,54 @@ class User{
 		if(!empty($_POST["envoyer"]))
 		{
 			$id = $_SESSION['utilisateur_id'] ;
-		
-			$newuser = $_POST["newuser"];
-		
-			$sql  = 'UPDATE users SET last_name="'.$newuser.'" WHERE user_id = '.$id.' ';
-			$result = $db->prepare($sql);
-			$columns = $result->execute();
-		}
-		if(!empty($_SESSION))
-		{
-			$id = $_SESSION['utilisateur_id'] ;
-			$sql = 'SELECT last_name ,first_name , mail, password FROM users WHERE user_id = '.$id.' ';
-			$result = $db->prepare($sql);
-			$row = $result->execute();
-			$row = $result->fetch();
-
-			echo "Votre nom :".$row["last_name"].'</br>' ;
-			echo "Votre prenom :".$row["first_name"].'</br>' ;
-			echo "Votre mail :".$row["mail"].'</br>' ;
-			echo "Votre mdp :".$row["password"].'</br>' ;
-	
-	
-		}
-		else{
-			echo "pas de résultat" ;
-		}
+			$sqlf = 'SELECT last_name ,first_name , mail, password FROM users WHERE user_id = '.$id.' ';
+			$resultf = $db->prepare($sqlf);
+			$rowf = $resultf->execute();
+			$rowf = $resultf->fetch();
+			
+			if(md5($_POST["oldpassword"]) == $rowf["password"])
+			{
+				if(!empty($_POST["newuser"]))
+				{
+					$newuser = $_POST["newuser"];
+					$sql  = 'UPDATE users SET last_name="'.$newuser.'" WHERE user_id = '.$id.' ';
+					$result = $db->prepare($sql);
+					$columns = $result->execute();
+					echo "nom changé" ; 
+				}
+				if(!empty($_POST["newuserpr"]))
+				{
+					$newuserpr = $_POST["newuserpr"];
+					$sql2  = 'UPDATE users SET first_name="'.$newuserpr.'" WHERE user_id = '.$id.' ';
+					$result2 = $db->prepare($sql2);
+					$columns2 = $result2->execute();
+					echo "prénom changé" ;
+				}
+				if(!empty($_POST["newmail"]))
+				{
+					$newmail = $_POST["newmail"];
+					$resetmail  = 'UPDATE users SET mail="'.$newmail.'" WHERE user_id = '.$id.' ';
+					$result3 = $db->prepare($resetmail);
+					$columns3 = $result3->execute();
+					echo "mail changé";
+				}
+				if(!empty($_POST["newpassword"]))
+				{
+					$newpassword = $_POST["newpassword"];
+					$sql  = 'UPDATE users SET password="'.md5($newpassword).'" WHERE user_id = '.$id.' ';
+					$result = $db->prepare($sql);
+					$columns = $result->execute();
+					echo "mot de passe changé" ;
+				}
+			}else{ echo "Ancien mot de passe érroné ";} 
+			}
 
 		
 	}
 	
 	
 	public static function inscription($mail, $password, $first_name, $last_name, $avatar)
-	{
+	{/*
 	try
 	{
 		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
@@ -98,8 +114,8 @@ class User{
 			$unuser = new user($mail, $password);
 
 	$unuser->connexion();
-	}
 	}*/
+	}
 	
 
 	
@@ -163,21 +179,32 @@ try
 	{
 		
 		$id = $_SESSION['utilisateur_id'] ;
-$sql = 'SELECT last_name, first_name, mail, password FROM users WHERE user_id = '.$id.'  ';
-echo $sql;
+$sql = 'SELECT last_name, first_name, mail, password, avatar FROM users WHERE user_id = '.$id.'  ';
 $result =$db->prepare($sql);
 $row = $result->execute();
 $row = $result->fetch();
 
-		echo "Votre nom :".$row["last_name"].'</br>' ;
-		echo "Votre prenom :".$row["first_name"].'</br>' ;
-		echo "Votre mail :".$row["mail"].'</br>' ;
-		//echo "Votre mdp :".$row["password"].'</br>' ;
-		echo "<a href='/seeit/modifiercompte'>modification du compte</a>";
 	
+
+		echo "<div class='row content'>";
+		
+		echo "<div class='small-8 large-8 columns'>";
+		echo "<h1 class='columns large-12 center' >VOTRE COMPTE</h1>";
+		echo "<div id='infocompte' class='columns small-12 large-12 center'>";
+		echo "<strong>Votre nom : </strong>".$row["last_name"].'</br>' ;
+		echo "<strong>Votre prenom : </strong>".$row["first_name"].'</br>' ;
+		echo "<strong>Votre mail : </strong>".$row["mail"].'</br>' ;
+		echo "</div>";
+		echo "<a href='/seeit/modifiercompte' class='button expand' style='margin-top: 68px' >Modification du compte</a>";
+		echo "</div>";
+		echo "<div class='small-4 large-4 columns'>";
+		echo "<img src='img/".$row["avatar"]."' id='photoavatar'/>" ;
+		echo "</div>";
+		echo "</div>";
+
 }
 else{
-	echo "pas de résultat" ;
+	echo "Vous n'êtes pas inscrit" ;
 }
 }
 
@@ -236,5 +263,36 @@ else{
 		$this->_password = $newpassword ;
 	}
 
+	public static function userGalerie(){
+		try
+    {
+      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+      $db->query('SET NAMES utf8');
+    }
+    catch (Exception $e)
+    {
+      die('Erreur : ' . $e->getMessage());
+    }
 
-	}?>
+		$user_id = $_GET["user_id"];
+		$requete = $db->prepare("SELECT * from photos WHERE user_id = :user_id");
+		$valeursParam = array(":user_id" => $user_id);
+    	$requete->execute($valeursParam);
+    	$donnees = $requete ->fetch();
+
+    	while ($donnees = $requete->fetch())
+{
+
+    echo '
+        <div class="small-2 large-4 columns content_img">
+          <img src="'.$donnees["photo_src"].'"/>
+          <div class="hover_img">
+            <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"><p class="titre">'.$donnees["title"].'</p></a>
+            <a href="/seeit/addfavoris?photo_id='.$donnees["photo_id"].'"> <div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
+          </div>
+        </div>';
+  
+	}
+}
+}
+?>

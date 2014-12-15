@@ -34,16 +34,16 @@
 
 <!-- Left Nav Section -->
         <ul class="left">
-          <li class="active"><a href="/seeit/test">Importer</a></li>
+          <li class="active"><a href="/seeit/importer">Importer</a></li>
           <li class="has-dropdown">
             <a href="#">Explorer</a>
             <ul class="dropdown">
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
+              <li><a href="/seeit/categorie?categorie=paysage">Paysage</a></li>
+              <li><a href="/seeit/categorie?categorie=art">Art</a></li>
+              <li><a href="/seeit/categorie?categorie=animal">Animal</a></li>
+              <li><a href="/seeit/categorie?categorie=sport">Sport</a></li>
+              <li><a href="/seeit/categorie?categorie=immobilier">Immobilier</a></li>
+              <li><a href="/seeit/categorie?categorie=musique">Musique</a></li>
             </ul>
           </li>
           <li class=""><a href="/seeit/galerie">Ma Galerie</a></li>
@@ -76,12 +76,12 @@
           <li class="has-dropdown">
             <a href="#">Explorer</a>
             <ul class="dropdown">
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
-              <li><a href="#">Catégorie</a></li>
+              <li><a href="/seeit/categorie?categorie=paysage">Paysage</a></li>
+              <li><a href="/seeit/categorie?categorie=art">Art</a></li>
+              <li><a href="/seeit/categorie?categorie=animal#">Animal</a></li>
+              <li><a href="/seeit/categorie?categorie=sport">Sport</a></li>
+              <li><a href="/seeit/categorie?categorie=immobilier">Immobilier</a></li>
+              <li><a href="/seeit/categorie?categorie=musique">Musique</a></li>
             </ul>
           </li>
         </ul>
@@ -90,11 +90,20 @@
 
     <?php } ?>
 <ul class="breadcrumbs"> 
+
+  <li><a href="/seeit/categorie?categorie=paysage">Paysage</a></li>
+  <li><a href="/seeit/categorie?categorie=art">Art</a></li>
+  <li><a href="/seeit/categorie?categorie=animal">Animal</a></li>
+  <li><a href="/seeit/categorie?categorie=sport">Sport</a></li> 
+  <li><a href="/seeit/categorie?categorie=immobilier">Immobilier</a></li>
+  <li><a href="/seeit/categorie?categorie=musique">Musique</a></li> 
+
   <li><a href="#">Home</a></li>
   <li><a href="/seeit/test_image">Tester son image</a></li> 
   <?php if( isset($_SESSION['admin']) && $_SESSION['admin'] ):?> 
     <li><a href="/seeit/admin">Admin</a></li> 
   <?php endif ?>
+
 </ul>
 <?php 
 echo $yield;

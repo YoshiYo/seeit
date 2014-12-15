@@ -1,3 +1,13 @@
+#photoavatar
+{
+	border-radius : 9px ;
+}
+
+#infocompte
+{
+	
+}
+
 meta.foundation-version {
   font-family: "/5.4.7/"; }
 
@@ -6262,6 +6272,11 @@ th.hide-for-touch {
   a:hover{
     color: white;
   }
+
+  .center {
+  text-align: center;
+  margin-top: 17px;}
+
 .margin-top a{
     margin-top:px;
     color:#000000;
@@ -6270,3 +6285,4 @@ th.hide-for-touch {
 .margin-top a:hover{
     color:#24AAF0;
 }
+
