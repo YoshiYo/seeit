@@ -1,4 +1,5 @@
 <?php
+
  // Constantes
 define('TARGET', 'img/');    // Repertoire cible
 define('MAX_SIZE', 1000000000);    // Taille max en octets du fichier
@@ -27,6 +28,8 @@ if( !is_dir(TARGET) ) {
  * Script d'upload
  *************************************************************/
 if(!empty($_POST))
+{
+if($_POST['password'] == $_POST['confirmation'])
 {
   // On verifie si le champ est rempli
   if( !empty($_FILES['fichier']['name']) )
@@ -61,13 +64,14 @@ if(!empty($_POST))
             {
               die('Erreur : ' . $e->getMessage());
             }
+			
             $sql = $db->prepare("INSERT INTO users(mail, password, first_name, last_name, admin, avatar) VALUES (:mail, :password, :first_name, :last_name, 0, :avatar)");
             $valeursparam = array(":mail"=>$_POST['mail'],":password"=>md5($_POST['password']),
             ":first_name"=>$_POST['first_name'],
             ":last_name"=>$_POST['last_name'],
             ":avatar"=>$nomImage);
             $sql->execute($valeursparam);
- 
+			
             // Si c'est OK, on teste l'upload
             if(move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET.$nomImage))
             {
@@ -107,7 +111,8 @@ if(!empty($_POST))
     // Sinon on affiche une erreur pour le champ vide
     $message = 'Veuillez remplir le formulaire svp !';
   }
-}
+}else
+{ echo "les mots de passes sont differents";}}
 ?>
 
 
@@ -128,6 +133,9 @@ if(!empty($_POST))
         </div>
         <div class="large-4 columns">
           <label>Mot de passe :<input required type="password" name="password"/>
+        </div>
+		<div class="large-4 columns">
+          <label>Confirmation :<input required type="password" name="confirmation"/>
         </div>
         <div class="large-4 columns">
           <label>Nom :<input required type="text" name="last_name"/>

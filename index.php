@@ -129,9 +129,19 @@
       $image = Image::addImage();
       $app->render('test.php');
   });
+  
       $app->post('/importer', function () use ($app) {        
       $image = Image::addImage();
       $app->render('test.php');
+  });
+  
+  $app->get('/modifierimage', function () use ($app) {        
+      $app->render('authentification/modifierimage.php');
+  });
+	
+	$app->post('/modifierimage', function () use ($app) {        
+      $image = Image::modifyImage();
+      $app->render('authentification/modifierimage.php');
   });
 
       $app->get('/categorie', function () use ($app) {
