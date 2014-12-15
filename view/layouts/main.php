@@ -36,7 +36,7 @@
         <ul class="left">
           <li class="active"><a href="/seeit/importer">Importer</a></li>
           <li class="has-dropdown">
-            <a href="#">Explorer</a>
+            <a href="/seeit">Explorer</a>
             <ul class="dropdown">
               <li><a href="/seeit/categorie?categorie=paysage">Paysage</a></li>
               <li><a href="/seeit/categorie?categorie=art">Art</a></li>
@@ -74,7 +74,7 @@
         <ul class="left">
           <li class="active"><a href="/seeit/inscription">Inscription</a></li>
           <li class="has-dropdown">
-            <a href="#">Explorer</a>
+            <a href="/seeit">Explorer</a>
             <ul class="dropdown">
               <li><a href="/seeit/categorie?categorie=paysage">Paysage</a></li>
               <li><a href="/seeit/categorie?categorie=art">Art</a></li>

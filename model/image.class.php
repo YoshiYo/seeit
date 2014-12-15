@@ -198,7 +198,6 @@ if(isset($_SESSION['mail'])){
     <h3>EXPLORER : </h3>";
 while ($donnees = $requete->fetch())
 {
-
     echo '
         <div class="small-2 large-4 columns content_img">
           <img src="img/'.$donnees["photo_src"].'"/>
