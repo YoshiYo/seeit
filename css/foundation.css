@@ -6287,4 +6287,18 @@ th.hide-for-touch {
     color:#24AAF0;
 }
 
+.supprimer
+{
+ /* background-color: red;
+  color:white;
+  border-radius: 200px;
+  height:16px;
+  padding:5px;*/
+  background-image:url('http://www.xn--icne-wqa.com/images/icones/2/3/dialog-error-3.png');
+
+}
+
+.supprimer img {
+  width: 10px;
+}
 

@@ -37,8 +37,8 @@
   })->name('admin');
 
   $app->post('/admin', function () use ($app) {
-    $app->render('zone_admin/index.php');
-    $user = User::modificationadmin();
+    $users = User::modificationadmin();
+    $app->render('zone_admin/index.php', array('users' => $users));
   });
 
   $view = $app->view();

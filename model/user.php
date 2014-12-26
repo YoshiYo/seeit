@@ -34,11 +34,12 @@ class User{
 		}
 		$sql = $db->prepare('SELECT * FROM users ORDER BY user_id');
 		$sql->execute();
-		echo '<div class="row content">';
-		while ($user = $sql->fetch()) {
-			echo $user["user_id"],' - '.$user["last_name"].'</br>';
+		$users = $sql->fetchAll();
+		return $users;
+		/*while ($user = $sql->fetch()) {
+			echo $user["user_id"],' - '.$user["last_name"].'<input type="button" class="Supprimer" value=""></br>';
 		}
-		echo '</div>';
+*/		
 	}
 	
 	public static function modification($newuser)
