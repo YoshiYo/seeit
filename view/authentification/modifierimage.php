@@ -16,7 +16,7 @@
             <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_SIZE; ?>" />
             <input required name="fichier" type="file" id="fichier_a_uploader" />
           </p>
-           <input required type="submit" name="submit" value="M'inscrire" class="button small" />
+           <a href="authentification/infocompte"><input required type="submit" name="submit" value="M'inscrire" class="button small" /></a>
         </div>
       </form>
     </div>
