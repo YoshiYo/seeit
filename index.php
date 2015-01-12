@@ -41,6 +41,13 @@
     $app->render('zone_admin/index.php', array('users' => $users));
   });
 
+  $app->post('/admin', function () use ($app) {
+    $users = User::removeuser();
+    $app->render('zone_admin/index.php', array('users' => $users));
+  });
+
+
+
   $view = $app->view();
   $view->setTemplatesDirectory('view');
 
@@ -70,7 +77,7 @@
 	$app->post('/inscription', function () use ($app) {
 	  //$user = User::inscription($_POST['mail'], $_POST['password'], $_POST['first_name'], $_POST['last_name'], $_POST['avatar']);
     $app->render('authentification/inscription.php');
-    //$app->redirect($app->urlFor('connexion'));
+    $app->redirect($app->urlFor('connexion'));
 	});
 
 

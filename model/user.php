@@ -41,6 +41,21 @@ class User{
 		}
 */		
 	}
+
+	public static function removeuser()
+	{
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
+			
+		}
+		catch (Exception $e)
+		{
+				die('Erreur : ' . $e->getMessage());
+		}
+		$sql = $db->prepare('DELETE FROM users WHERE user_id='.$users.'');
+		$sql->execute();
+	}
 	
 	public static function modification($newuser)
 	{

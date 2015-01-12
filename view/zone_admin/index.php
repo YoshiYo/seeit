@@ -9,7 +9,13 @@
     if (!empty($users))
     {
       foreach ($users as $user) {
-        echo $user["user_id"],' - '.$user["last_name"].'<input type="button" class="supprimer" value="-"></br>';
+        echo $user["user_id"],' - '.$user["last_name"].'<input type="button" class="supprimer" value="-">
+        <form method="post" action="">';
+        $users =$user["user_id"];
+        echo $users;
+        echo '
+                <input type="submit" value="'.$user["user_id"].'"/> </form>
+        </br>';
       }
     }?>
   </div>
