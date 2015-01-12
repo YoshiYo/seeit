@@ -42,7 +42,7 @@ class User{
 */		
 	}
 
-	public static function removeuser()
+	public static function removeuser($user_id)
 	{
 		try
 		{
@@ -53,7 +53,7 @@ class User{
 		{
 				die('Erreur : ' . $e->getMessage());
 		}
-		$sql = $db->prepare('DELETE FROM users WHERE user_id='.$users.'');
+		$sql = $db->prepare('DELETE FROM users WHERE user_id='.$user_id.'');
 		$sql->execute();
 	}
 	

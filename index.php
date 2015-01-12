@@ -33,19 +33,22 @@
   $app->get('/admin', function () use ($app) {
     $app->applyHook('verification.admin');
     $app->render('zone_admin/index.php');
-    echo 'admin';
   })->name('admin');
 
   $app->post('/admin', function () use ($app) {
     $users = User::modificationadmin();
     $app->render('zone_admin/index.php', array('users' => $users));
-  });
+  })->name('modificationadmin');
 
   $app->post('/admin', function () use ($app) {
     $users = User::removeuser();
     $app->render('zone_admin/index.php', array('users' => $users));
   });
 
+  $app->post('/removeuser', function () use ($app) {
+    User::removeuser($_POST["userid"]);
+    $app->redirect($app->urlFor('modificationadmin'));
+  })->name('remove');
 
 
   $view = $app->view();
