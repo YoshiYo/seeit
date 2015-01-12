@@ -26,11 +26,11 @@ class Recherche {
             $datas[] = $row;
             echo '
             <div class="row content">
-            <h3>'.$row['title'].'</h3> par '.$row["last_name"].' <br/> <b>Catégorie:</b> '.$row["categorie"].'<br/><b>Couleur:</b> '.$row["color"].'<br/>
+            <h3>'.$row['title'].'</h3> par '.$row["last_name"].' <br/> <b>Catégorie:</b> '.$row["categorie"].'<br/>
             <div class="small-2 large-4 columns content_img">
-                  <img src="'.$row["photo_src"].'"/>
+                  <img src="img/'.$row["photo_src"].'"/>
                     <div class="hover_img">
-                    <p>'.$row["title"].'</p>
+                    <a href="/seeit/image?photo_id='.$row["photo_id"].'"><p>'.$row["title"].'</p></a>
                     </div>
                 </div>
             </div>';

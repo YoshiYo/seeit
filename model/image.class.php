@@ -86,7 +86,7 @@ class Image {
     <h2>'.$donnees["title"].'</h2>
     <div id="sphere" style="width: 100%; height: 600px;"></div>
     <script type="text/javascript">
-    new Photosphere("'.$donnees["photo_src"].'").loadPhotosphere(document.getElementById("sphere"));
+    new Photosphere("img/'.$donnees["photo_src"].'").loadPhotosphere(document.getElementById("sphere"));
     </script>
     </div>
     ';
@@ -127,7 +127,7 @@ if(isset($_SESSION['mail'])){
         <div class="small-2 large-4 columns content_img">
           <img class="favoris" src="img/'.$donnees2["photo_src"].'"/>
           <div class="hover_img">
-            <a href="/seeit/image?photo_id="'.$donnees2["photo_id"].'"> <p class="titre">'.$donnees["title"].'</p></a>
+            <a href="/seeit/image?photo_id="'.$donnees2["photo_id"].'"> <p class="titre">'.$donnees2["title"].'</p></a>
             <a href="/seeit/delfavoris?photo_id='.$donnees2["photo_id"].'"><div class="fav"><img class="ico_del_fav" src="img/fav.png" style="width:100%;"></div></a>
           </div>
         </div>';
@@ -245,10 +245,10 @@ while ($donnees = $requete->fetch())
 
   public static function addImage ()
   {
-   // Constantes
+    // Constantes
 define('TARGET', 'img/');    // Repertoire cible
-define('WIDTH_MAX', 1000000000);    // Largeur max de l'image en pixels
-define('HEIGHT_MAX', 1000000000);    // Hauteur max de l'image en pixels
+define('WIDTH_MAX', 100000000000000000);    // Largeur max de l'image en pixels
+define('HEIGHT_MAX', 10000000000000000);    // Hauteur max de l'image en pixels
  
 // Tableaux de donnees
 $tabExt = array('jpg','gif','png','jpeg');    // Extensions autorisees
@@ -271,7 +271,7 @@ if( !is_dir(TARGET) ) {
 /************************************************************
  * Script d'upload
  *************************************************************/
-if(!empty($_POST['fichier']))
+if(!empty($_POST))
 {
   // On verifie si le champ est rempli
   if( !empty($_FILES['fichier']['name']) )
