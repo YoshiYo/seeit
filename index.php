@@ -8,7 +8,6 @@
   session_start();
 
 
-
   $app = new \Slim\Slim(array(
     'view' => '\Slim\LayoutView', // I activate slim layout component
     'layout' => 'layouts/main.php' // I define my main layout
@@ -55,8 +54,11 @@
   $view->setTemplatesDirectory('view');
 
   $app->get('/', function () use ($app) {
-    $app->render('index.php');
-    $image = Image::takeAllImage();
+  $requete2 = Image::takeAllImage1();
+  $donnees3 = Image::takeAllImage2();
+  $requete = Image::takeAllImage3();
+    $app->render('index.php', array('requete2'=>$requete2, 'donnees3'=>$donnees3, 'requete'=>$requete));
+    
   })->name('accueil');
 
    $app->get('/connexion', function () use ($app) {
@@ -65,12 +67,18 @@
   
 	$app->post('/connexion', function () use ($app) {    
 	$user = User::connexion($_POST['mail'], $_POST['password']);
-    if ($user = true)
+    if ($user == true)
     {
-       // echo "test admin reussi";
+       $app->redirect($app->urlFor('accueil'));  
+    }
+    else
+    {
+        $app->flash('error', 'L\'adresse email et le mot de passe que vous avez entrés ne correspondent pas à ceux présents dans nos fichiers. Veuillez vérifier et réessayer.');
+        $app->redirect($app->urlFor('connexion'));
+       
     }
     $app->render('authentification/connexion.php');
-    $app->redirect($app->urlFor('accueil'));  
+    
 	});
 
   $app->get('/inscription', function () use ($app) {
@@ -103,8 +111,8 @@
 	});
 
   $app->get('/infocompte', function () use ($app) {
-    $app->render('authentification/infocompte.php');
-  $user = User::afficher_compte();
+  $row = User::afficher_compte();
+    $app->render('authentification/infocompte.php', array('row'=>$row));
   });
   
      $app->get('/deconnexion', function () use ($app) {    
@@ -129,18 +137,23 @@
   });
 
     $app->get('/galerie', function () use ($app) {
-    $app->render('galerie.php');
-    $photo = Image::galerie();
+    $donnees3 = Image::galerie1();
+	$requete2 = Image::galerie2();
+	$requete = Image::galerie3();	
+	$app->render('galerie.php', array('donnees3'=>$donnees3, 'requete2'=>$requete2, 'requete'=>$requete));
+    
   });
 
     $app->get('/user', function () use ($app) {
-    $app->render('user.php');
-    $photo = User::userGalerie();
+	$donnees = User::userGalerie();
+    $app->render('user.php', array('donnees'=>$donnees));
+    
   });
 
      $app->get('/image', function () use ($app) {
-      $app->render('image.php');
-      $photo = Image::takeOneImage();
+      $donnees = Image::takeOneImage();
+	  $app->render('image.php', array('donnees'=>$donnees));
+      
       $image = Image::takeAllImage();
   });
 
@@ -164,8 +177,9 @@
   });
 
       $app->get('/categorie', function () use ($app) {
-      $app->render('categorie.php');
-      $image = Image::takeImageCategorie();
+	  $requete = Image::takeImageCategorie();
+      $app->render('categorie.php', array('requete'=>$requete));
+      
   });
 
   $app->run();

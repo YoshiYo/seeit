@@ -36,10 +36,8 @@ class User{
 		$sql->execute();
 		$users = $sql->fetchAll();
 		return $users;
-		/*while ($user = $sql->fetch()) {
-			echo $user["user_id"],' - '.$user["last_name"].'<input type="button" class="Supprimer" value=""></br>';
-		}
-*/		
+
+	
 	}
 
 	public static function removeuser($user_id)
@@ -142,18 +140,6 @@ class User{
 		$sql->execute($valeursparam);
 	}
 	
-	/*public function before_connexion()
-	{
-		if(isset($_POST['envoyer']))
-		{
-			$mail = $_POST['mail'];
-			$password = $_POST['password'];
-
-			$unuser = new user($mail, $password);
-
-	$unuser->connexion();
-	}*/
-	
 
 	
 
@@ -178,7 +164,7 @@ class User{
 		$result = $db->prepare($sql);
 		$columns = $result->execute();
 		$columns = $result->fetch();
-		if ( sizeof($columns) > 0)
+		if ( sizeof($columns) > 1)
 
 		{
 				$_SESSION['utilisateur_id'] = $columns['user_id'];
@@ -214,37 +200,18 @@ try
 	{
 			die('Erreur : ' . $e->getMessage());
 	}
-	if(!empty($_SESSION['utilisateur_id']))
-	{
+	/*if(!empty($_SESSION['utilisateur_id']))
+	{*/
 		
 		$id = $_SESSION['utilisateur_id'] ;
 $sql = 'SELECT last_name, first_name, mail, password, avatar FROM users WHERE user_id = '.$id.'  ';
-$result =$db->prepare($sql);
+$result = $db->prepare($sql);
 $row = $result->execute();
 $row = $result->fetch();
+return $row;
 
-	
+/*}*/
 
-		echo "<div class='row content'>";
-		
-		echo "<div class='small-8 large-8 columns'>";
-		echo "<h1 class='columns large-12 center' >VOTRE COMPTE</h1>";
-		echo "<div id='infocompte' class='columns small-12 large-12 center'>";
-		echo "<strong>Votre nom : </strong>".$row["last_name"].'</br>' ;
-		echo "<strong>Votre prenom : </strong>".$row["first_name"].'</br>' ;
-		echo "<strong>Votre mail : </strong>".$row["mail"].'</br>' ;
-		echo "</div>";
-		echo "<a href='/seeit/modifiercompte' class='button expand' style='margin-top: 68px' >Modification du compte</a>";
-		echo "</div>";
-		echo "<div class='small-4 large-4 columns'>";
-		echo "<a href='/seeit/modifierimage'><img src='img/".$row["avatar"]."' id='photoavatar'/></a>" ;
-		echo "</div>";
-		echo "</div>";
-
-}
-else{
-	echo "Vous n'êtes pas inscrit" ;
-}
 }
 
 	public static function deconnexion ()
@@ -318,20 +285,9 @@ else{
 		$valeursParam = array(":user_id" => $user_id);
     	$requete->execute($valeursParam);
     	$donnees = $requete ->fetch();
+		return $donnees;
 
-    	while ($donnees = $requete->fetch())
-{
-
-    echo '
-        <div class="small-2 large-4 columns content_img">
-          <img src="'.$donnees["photo_src"].'"/>
-          <div class="hover_img">
-            <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"><p class="titre">'.$donnees["title"].'</p></a>
-            <a href="/seeit/addfavoris?photo_id='.$donnees["photo_id"].'"> <div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
-          </div>
-        </div>';
-  
-	}
+    	
 }
 }
 ?>

@@ -141,6 +141,7 @@ if($_POST['password'] == $_POST['confirmation'])
         <div class="large-4 columns">
           <label>Nom :<input required type="text" name="last_name"/>
         </div>
+		<?php $app->flash('error', 'User email is required'); ?>
         <div class="large-4 columns">
           <label>Prenom :<input required type="text" name="first_name"/>
         </div> 
