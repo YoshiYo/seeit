@@ -7,12 +7,6 @@
   require_once 'model/recherche.php';
   session_start();
 
-  
-  $app->get('/error', function () use ($app) {
-    $app->flash('error', 'Login required');
-    $app->render('error.twig'); 
-})->name('error');
-
 
   $app = new \Slim\Slim(array(
     'view' => '\Slim\LayoutView', // I activate slim layout component
@@ -60,8 +54,11 @@
   $view->setTemplatesDirectory('view');
 
   $app->get('/', function () use ($app) {
-    $app->render('index.php');
-    $image = Image::takeAllImage();
+  $requete2 = Image::takeAllImage1();
+  $donnees3 = Image::takeAllImage2();
+  $requete = Image::takeAllImage3();
+    $app->render('index.php', array('requete2'=>$requete2, 'donnees3'=>$donnees3, 'requete'=>$requete));
+    
   })->name('accueil');
 
    $app->get('/connexion', function () use ($app) {
@@ -108,8 +105,8 @@
 	});
 
   $app->get('/infocompte', function () use ($app) {
-    $app->render('authentification/infocompte.php');
-  $user = User::afficher_compte();
+  $row = User::afficher_compte();
+    $app->render('authentification/infocompte.php', array('row'=>$row));
   });
   
      $app->get('/deconnexion', function () use ($app) {    
@@ -139,13 +136,15 @@
   });
 
     $app->get('/user', function () use ($app) {
-    $app->render('user.php');
-    $photo = User::userGalerie();
+	$donnees = User::userGalerie();
+    $app->render('user.php', array('donnees'=>$donnees));
+    
   });
 
      $app->get('/image', function () use ($app) {
-      $app->render('image.php');
-      $photo = Image::takeOneImage();
+      $donnees = Image::takeOneImage();
+	  $app->render('image.php', array('donnees'=>$donnees));
+      
       $image = Image::takeAllImage();
   });
 

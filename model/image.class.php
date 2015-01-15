@@ -80,18 +80,11 @@ class Image {
     $valeursParam = array(":photo_id" => $photo_id);
     $requete->execute($valeursParam);
     $donnees = $requete ->fetch();
-    echo 
-    '
-    <div class="row content">
-    <h2>'.$donnees["title"].'</h2>
-    <div id="sphere" style="width: 100%; height: 600px;"></div>
-    <script type="text/javascript">
-    new Photosphere("img/'.$donnees["photo_src"].'").loadPhotosphere(document.getElementById("sphere"));
-    </script>
-    </div>
-    ';
-
+	return $donnees;
   }
+  
+  
+  
   public static function galerie () 
   {
     try
@@ -109,14 +102,16 @@ class Image {
     $requete = $db->prepare('SELECT * FROM photos WHERE user_id = :user_id');
     $valeursParam = array(":user_id" => $_SESSION['utilisateur_id']);
     $requete->execute($valeursParam);
-if(isset($_SESSION['mail'])){
-    $requete2 = $db->prepare('SELECT * FROM favoris fav JOIN photos pho ON fav.photo_id = pho.photo_id WHERE fav.user_id='.$_SESSION['utilisateur_id'].' ORDER BY fav.photo_id DESC');
-    $requete2->execute();
+	
+	if(isset($_SESSION['mail'])){
+		$requete2 = $db->prepare('SELECT * FROM favoris fav JOIN photos pho ON fav.photo_id = pho.photo_id WHERE fav.user_id='.$_SESSION['utilisateur_id'].' ORDER BY fav.photo_id DESC');
+		$requete2->execute();
 
-    $requete3 = $db->prepare('SELECT COUNT(favori_id) "nb" FROM favoris WHERE user_id='.$_SESSION['utilisateur_id']);
-    $requete3->execute();
-    $donnees3 = $requete3->fetch();
-    if ($donnees3['nb'] != 0){
+		$requete3 = $db->prepare('SELECT COUNT(favori_id) "nb" FROM favoris WHERE user_id='.$_SESSION['utilisateur_id']);
+		$requete3->execute();
+		$donnees3 = $requete3->fetch();
+		return $donnees3;
+			if ($donnees3['nb'] != 0){
     echo"
     <div class='row content'>
     <h3>FAVORIS : </h3>";
@@ -151,7 +146,45 @@ while ($donnees = $requete->fetch())
         </div>';
   }
 
-  public static function takeAllImage () 
+  public static function takeAllImage1 () 
+  {
+    try
+    {
+      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+      $db->query('SET NAMES utf8');
+    }
+    catch (Exception $e)
+    {
+      die('Erreur : ' . $e->getMessage());
+    }
+
+	if(isset($_SESSION['mail'])){
+		$requete2 = $db->prepare('SELECT * FROM favoris fav JOIN photos pho ON fav.photo_id = pho.photo_id WHERE fav.user_id='.$_SESSION['utilisateur_id'].' ORDER BY fav.photo_id DESC');
+		$requete2->execute();
+		return $requete2;
+    }
+}
+
+   public static function takeAllImage2 () 
+  {
+    try
+    {
+      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+      $db->query('SET NAMES utf8');
+    }
+    catch (Exception $e)
+    {
+      die('Erreur : ' . $e->getMessage());
+    }
+	if(isset($_SESSION['mail'])){
+
+		$requete3 = $db->prepare('SELECT COUNT(favori_id) "nb" FROM favoris WHERE user_id='.$_SESSION['utilisateur_id']);
+		$requete3->execute();
+		$donnees3 = $requete3->fetch();
+		return $donnees3;
+	}}
+	
+	 public static function takeAllImage3 () 
   {
     try
     {
@@ -165,50 +198,15 @@ while ($donnees = $requete->fetch())
 
     //$requete = $db->prepare("SELECT * from photos ORDER BY photo_id)");
     //$requete->execute();
-    $requete = $db->query('SELECT * FROM photos ORDER BY photo_id DESC');
-if(isset($_SESSION['mail'])){
-    $requete2 = $db->prepare('SELECT * FROM favoris fav JOIN photos pho ON fav.photo_id = pho.photo_id WHERE fav.user_id='.$_SESSION['utilisateur_id'].' ORDER BY fav.photo_id DESC');
-    $requete2->execute();
+    $request = $db->prepare('SELECT * FROM photos ORDER BY photo_id DESC');
+	$requete = $request->execute();
+	$requete = $request->fetch();
+	return $requete;
+}
 
-    $requete3 = $db->prepare('SELECT COUNT(favori_id) "nb" FROM favoris WHERE user_id='.$_SESSION['utilisateur_id']);
-    $requete3->execute();
-    $donnees3 = $requete3->fetch();
-    if ($donnees3['nb'] != 0){
-    echo"
-    <div class='row content'>
-    <h3>FAVORIS : </h3>";
+ 
 
-    while($donnees2 = $requete2->fetch())
-    {
-      echo '
-        <div class="small-2 large-4 columns content_img">
-         <img class="favoris" src="img/'.$donnees2["photo_src"].'"/>
-          <div class="hover_img">
-            <a href="/seeit/image?photo_id='.$donnees2["photo_id"].'"><p class="titre">'.$donnees2["title"].'</p></a>
-            <a href="/seeit/delfavoris?photo_id='.$donnees2["photo_id"].'"><div class="fav"><img class="ico_del_fav" src="img/fav.png" style="width:100%;"></div></a>
-          </div>
-        </div>';
-
-    }
-    echo "</div>";
-  }}
-     // On affiche chaque entrée une à une
-    echo "
-    <div class='row content'>
-    <h3>EXPLORER : </h3>";
-while ($donnees = $requete->fetch())
-{
-    echo '
-        <div class="small-2 large-4 columns content_img">
-          <img src="img/'.$donnees["photo_src"].'"/>
-          <div class="hover_img">
-            <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"><p class="titre">'.$donnees["title"].'</p></a>
-            <a href="/seeit/addfavoris?photo_id='.$donnees["photo_id"].'"> <div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
-          </div>
-        </div>';
-  }}
-
-  public static function takeImageCategorie ()
+ public static function takeImageCategorie ()
   {
     //Select * From photos Where categorie = $categorie
     try
