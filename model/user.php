@@ -36,10 +36,8 @@ class User{
 		$sql->execute();
 		$users = $sql->fetchAll();
 		return $users;
-		/*while ($user = $sql->fetch()) {
-			echo $user["user_id"],' - '.$user["last_name"].'<input type="button" class="Supprimer" value=""></br>';
-		}
-*/		
+
+	
 	}
 
 	public static function removeuser($user_id)

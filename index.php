@@ -131,8 +131,11 @@
   });
 
     $app->get('/galerie', function () use ($app) {
-    $app->render('galerie.php');
-    $photo = Image::galerie();
+    $donnees3 = Image::galerie1();
+	$requete2 = Image::galerie2();
+	$requete = Image::galerie3();	
+	$app->render('galerie.php', array('donnees3'=>$donnees3, 'requete2'=>$requete2, 'requete'=>$requete));
+    
   });
 
     $app->get('/user', function () use ($app) {
