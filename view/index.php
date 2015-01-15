@@ -6,7 +6,8 @@
     <h3>FAVORIS : </h3>
 <?php
     foreach($this->data["requete2"] as $requete2)
-    {?>
+    {
+	?>
         <div class="small-2 large-4 columns content_img">
          <img class="favoris" src="img/<?php echo $requete2["photo_src"];?>"/>
           <div class="hover_img">

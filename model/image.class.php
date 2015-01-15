@@ -198,9 +198,9 @@ while ($donnees = $requete->fetch())
 
     //$requete = $db->prepare("SELECT * from photos ORDER BY photo_id)");
     //$requete->execute();
-    $request = $db->prepare('SELECT * FROM photos ORDER BY photo_id DESC');
-	$requete = $request->execute();
-	$requete = $request->fetch();
+    $requete = $db->prepare('SELECT * FROM photos ORDER BY photo_id DESC');
+	$requete->execute();
+	$requete->fetch();
 	return $requete;
 }
 

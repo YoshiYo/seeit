@@ -59,7 +59,7 @@
   $requete = Image::takeAllImage3();
     $app->render('index.php', array('requete2'=>$requete2, 'donnees3'=>$donnees3, 'requete'=>$requete));
     
-  })->name('accueil');*/
+  })->name('accueil');
 
    $app->get('/connexion', function () use ($app) {
     $app->render('authentification/connexion.php');
