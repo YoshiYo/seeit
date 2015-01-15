@@ -80,25 +80,7 @@
     $valeursParam = array(":photo_id" => $photo_id);
     $requete->execute($valeursParam);
     $donnees = $requete ->fetch();
-<<<<<<< HEAD
-
-    echo 
-    '
-    <div class="row content">
-    <h2>'.$donnees["title"].'</h2>
-    <p>'.$donnees["description"].'</p>
-    <div id="sphere" style="width: 100%; height: 600px;"></div>
-    <script type="text/javascript">
-    new Photosphere("img/'.$donnees["photo_src"].'").loadPhotosphere(document.getElementById("sphere"));
-    </script>
-    </div>
-    ';
-
-
-	return $donnees;
-
     return $donnees;
-
   }
   
   
