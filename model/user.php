@@ -178,7 +178,7 @@ class User{
 		$result = $db->prepare($sql);
 		$columns = $result->execute();
 		$columns = $result->fetch();
-		if ( sizeof($columns) > 0)
+		if ( sizeof($columns) > 1)
 
 		{
 				$_SESSION['utilisateur_id'] = $columns['user_id'];
