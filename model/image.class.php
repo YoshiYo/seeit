@@ -222,23 +222,9 @@ while ($donnees = $requete->fetch())
     $requete = $db->prepare("SELECT * from photos WHERE categorie = :categorie");
     $valeursParam = array(":categorie" => $_GET['categorie']);
     $requete->execute($valeursParam);
+	return $requete;
 
-     // On affiche chaque entrée une à une
-    echo "
-    <div class='row content'>
-    <h3>EXPLORER : </h3>";
-while ($donnees = $requete->fetch())
-{
-
-    echo '
-        <div class="small-2 large-4 columns content_img">
-          <img src="img/'.$donnees["photo_src"].'"/>
-          <div class="hover_img">
-            <a href="/seeit/image?photo_id='.$donnees["photo_id"].'"><p class="titre">'.$donnees["title"].'</p></a>
-            <a href="/seeit/addfavoris?photo_id='.$donnees["photo_id"].'"> <div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
-          </div>
-        </div>';
-  }
+   
   }
 
   public static function addImage ()

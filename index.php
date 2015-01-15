@@ -59,7 +59,7 @@
   $requete = Image::takeAllImage3();
     $app->render('index.php', array('requete2'=>$requete2, 'donnees3'=>$donnees3, 'requete'=>$requete));
     
-  })->name('accueil');
+  })->name('accueil');*/
 
    $app->get('/connexion', function () use ($app) {
     $app->render('authentification/connexion.php');
@@ -168,8 +168,9 @@
   });
 
       $app->get('/categorie', function () use ($app) {
-      $app->render('categorie.php');
-      $image = Image::takeImageCategorie();
+	  $requete = Image::takeImageCategorie();
+      $app->render('categorie.php', array('requete'=>$requete));
+      
   });
 
   $app->run();
