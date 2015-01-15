@@ -9,7 +9,7 @@ class User{
 	private $first_name;
 	private $last_name;
 	private $admin;
-    private $avatar;
+	private $avatar;
 	
 	public function __construct($mail, $password, $first_name, $last_name, $admin, $avatar)
 	{
@@ -18,7 +18,7 @@ class User{
 		$this->_first_name = $first_name;
 		$this->_last_name = $last_name;
 		$this->_admin = $admin;
-        $this->_avatar = $avatar;
+		$this->_avatar = $avatar;
 	}
 
 	public static function modificationadmin()
@@ -30,14 +30,14 @@ class User{
 		}
 		catch (Exception $e)
 		{
-				die('Erreur : ' . $e->getMessage());
+			die('Erreur : ' . $e->getMessage());
 		}
 		$sql = $db->prepare('SELECT * FROM users ORDER BY user_id');
 		$sql->execute();
 		$users = $sql->fetchAll();
 		return $users;
 
-	
+		
 	}
 
 	public static function removeuser($user_id)
@@ -49,7 +49,7 @@ class User{
 		}
 		catch (Exception $e)
 		{
-				die('Erreur : ' . $e->getMessage());
+			die('Erreur : ' . $e->getMessage());
 		}
 		$sql = $db->prepare('DELETE FROM users WHERE user_id='.$user_id.'');
 		$sql->execute();
@@ -65,7 +65,7 @@ class User{
 		}
 		catch (Exception $e)
 		{
-				die('Erreur : ' . $e->getMessage());
+			die('Erreur : ' . $e->getMessage());
 		}
 		if(!empty($_POST["envoyer"]))
 		{
@@ -109,10 +109,10 @@ class User{
 					$columns = $result->execute();
 					echo "mot de passe changé" ;
 				}
-			
+				
 
 			}else{ echo "Ancien mot de passe érroné ";} 
-			}
+		}
 
 		
 	}
@@ -120,23 +120,23 @@ class User{
 	
 	public static function inscription($mail, $password, $first_name, $last_name, $avatar)
 	{
-	try
-	{
-		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
-		$db->query('SET NAMES utf8');
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	}
-	catch (Exception $e)
-	{
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
+			$db->query('SET NAMES utf8');
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch (Exception $e)
+		{
 			die('Erreur : ' . $e->getMessage());
-	}
+		}
 		
 		
 		$sql = $db->prepare("INSERT INTO users(mail, password, first_name, last_name, avatar) VALUES (:mail, :password, :first_name, :last_name, :avatar)");
 		$valeursparam = array(":mail"=>$mail,":password"=>md5($password),
-		":first_name"=>$first_name,
-		":last_name"=>$last_name,
-        ":avatar"=>$avatar);
+			":first_name"=>$first_name,
+			":last_name"=>$last_name,
+			":avatar"=>$avatar);
 		$sql->execute($valeursparam);
 	}
 	
@@ -149,7 +149,7 @@ class User{
 	
 	public static function connexion($mail, $password)
 	{
-	
+		
 		try
 		{
 			$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
@@ -167,14 +167,14 @@ class User{
 		if ( sizeof($columns) > 1)
 
 		{
-				$_SESSION['utilisateur_id'] = $columns['user_id'];
-				$_SESSION['mail'] = $columns['mail'];
-				$_SESSION['password'] = $columns['password'];
-				if ($columns['admin'] == 1)
-				{
-					$_SESSION['admin'] = true;
-				}
-				return true;
+			$_SESSION['utilisateur_id'] = $columns['user_id'];
+			$_SESSION['mail'] = $columns['mail'];
+			$_SESSION['password'] = $columns['password'];
+			if ($columns['admin'] == 1)
+			{
+				$_SESSION['admin'] = true;
+			}
+			return true;
 		}
 		return false;
 	}
@@ -182,37 +182,37 @@ class User{
 	
 	public static function afficher_compte()
 	{
-	$password = $_SESSION['password'];
-	$mail = $_SESSION['mail'];
-try
-	{
-		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
-		$db->query('SET NAMES utf8');
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$password = $_SESSION['password'];
+		$mail = $_SESSION['mail'];
+		try
+		{
+			$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
+			$db->query('SET NAMES utf8');
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql ="SELECT * FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
-		$sql = $db->prepare($sql);
-		$sql->execute();
+			$sql ="SELECT * FROM users WHERE password = '".$password."' AND mail = '".$mail."'";
+			$sql = $db->prepare($sql);
+			$sql->execute();
 
 
-	}
-	catch (Exception $e)
-	{
+		}
+		catch (Exception $e)
+		{
 			die('Erreur : ' . $e->getMessage());
-	}
+		}
 	/*if(!empty($_SESSION['utilisateur_id']))
 	{*/
 		
 		$id = $_SESSION['utilisateur_id'] ;
-$sql = 'SELECT last_name, first_name, mail, password, avatar FROM users WHERE user_id = '.$id.'  ';
-$result = $db->prepare($sql);
-$row = $result->execute();
-$row = $result->fetch();
-return $row;
+		$sql = 'SELECT last_name, first_name, mail, password, avatar FROM users WHERE user_id = '.$id.'  ';
+		$result = $db->prepare($sql);
+		$row = $result->execute();
+		$row = $result->fetch();
+		return $row;
 
-/*}*/
+		/*}*/
 
-}
+	}
 
 	public static function deconnexion ()
 	{
@@ -225,7 +225,7 @@ return $row;
 	{
 		return $this->_last_name ;
 	}
-    public function getAvatar()
+	public function getAvatar()
 	{
 		return $this->_avatar ;
 	}
@@ -249,7 +249,7 @@ return $row;
 	{
 		$this->_last_name = $newlastname;
 	}
-    public function setAvatar($newavatar)
+	public function setAvatar($newavatar)
 	{
 		$this->_avatar = $avatar;
 	}
@@ -271,23 +271,23 @@ return $row;
 
 	public static function userGalerie(){
 		try
-    {
-      $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
-      $db->query('SET NAMES utf8');
-    }
-    catch (Exception $e)
-    {
-      die('Erreur : ' . $e->getMessage());
-    }
+		{
+			$db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+			$db->query('SET NAMES utf8');
+		}
+		catch (Exception $e)
+		{
+			die('Erreur : ' . $e->getMessage());
+		}
 
 		$user_id = $_GET["user_id"];
 		$requete = $db->prepare("SELECT * from photos WHERE user_id = :user_id");
 		$valeursParam = array(":user_id" => $user_id);
-    	$requete->execute($valeursParam);
-    	$donnees = $requete ->fetch();
+		$requete->execute($valeursParam);
+		$donnees = $requete ->fetch();
 		return $donnees;
 
-    	
-}
+		
+	}
 }
 ?>

@@ -1,47 +1,47 @@
 <?php
 class Recherche {
 
-		
+  
 	public static function search_photo ($s)	
     {
         try
-	{
-		$db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
-		$db->query('SET NAMES utf8');
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	}
-	catch (Exception $e)
-	{
-			die('Erreur : ' . $e->getMessage());
-	}
-        
-    $request = NULL;
-    $request = 'SELECT * FROM photos NATURAL JOIN users WHERE title LIKE "%'.$s.'%" OR categorie LIKE "%'.$s.'%"';
-        $request = $db->prepare($request);
-		$request->execute();
-        $datas=array();  
-        
-    if ($request != false) {
+        {
+          $db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
+          $db->query('SET NAMES utf8');
+          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      }
+      catch (Exception $e)
+      {
+         die('Erreur : ' . $e->getMessage());
+     }
+     
+     $request = NULL;
+     $request = 'SELECT * FROM photos NATURAL JOIN users WHERE title LIKE "%'.$s.'%" OR categorie LIKE "%'.$s.'%"';
+     $request = $db->prepare($request);
+     $request->execute();
+     $datas=array();  
+     
+     if ($request != false) {
         while($row = $request->fetch()){
             $datas[] = $row;
             echo '
             <div class="row content">
             <h3>'.$row['title'].'</h3> par '.$row["last_name"].' <br/> <b>Catégorie:</b> '.$row["categorie"].'<br/>
             <div class="small-2 large-4 columns content_img">
-                  <img src="img/'.$row["photo_src"].'"/>
-                    <div class="hover_img">
-                    <a href="/seeit/image?photo_id='.$row["photo_id"].'"><p>'.$row["title"].'</p></a>
-                    </div>
-                </div>
+            <img src="img/'.$row["photo_src"].'"/>
+            <div class="hover_img">
+            <a href="/seeit/image?photo_id='.$row["photo_id"].'"><p>'.$row["title"].'</p></a>
+            </div>
+            </div>
             </div>';
         }
     }
-        $request->closeCursor();
-    }
+    $request->closeCursor();
+}
 
-    public static function search_user ($s)	
-    {
-        try
+public static function search_user ($s)	
+{
+    try
     {
         $db = new PDO('mysql:host=localhost;dbname=seeit', 'root', '');
         $db->query('SET NAMES utf8');
@@ -49,15 +49,15 @@ class Recherche {
     }
     catch (Exception $e)
     {
-            die('Erreur : ' . $e->getMessage());
+        die('Erreur : ' . $e->getMessage());
     }
-        
+    
     $request = NULL;
     $request = 'SELECT * FROM users WHERE last_name LIKE "%'.$s.'%" OR first_name LIKE "%'.$s.'%"';
-        $request = $db->prepare($request);
-        $request->execute();
-        $datas=array();  
-        
+    $request = $db->prepare($request);
+    $request->execute();
+    $datas=array();  
+    
     if ($request != false) {
         while($row = $request->fetch()){
             $datas[] = $row;
@@ -72,8 +72,8 @@ class Recherche {
             </div>';
         }
     }
-        $request->closeCursor();
-    }
+    $request->closeCursor();
+}
 }
 
 ?> 
