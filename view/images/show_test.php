@@ -3,7 +3,7 @@
 			<b>Choisissez votre fichier à tester :</b> </br>
 			(Attention, photo FishEye attendu) </br></br>
 			<input type="file" id="loaditup" />
-		</div>
+		
 		<div id="sphere" style="width: 100%; height: 600px;"></div>
 		
 		<script type="text/javascript" src="js/three.min.js"></script>
@@ -33,3 +33,4 @@
 				});
 			}
 		</script>
+</div>

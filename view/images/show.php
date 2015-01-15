@@ -8,7 +8,8 @@
 			<input type="file" id="loaditup" />
 		<div id="sphere" style="width: 100%; height: 600px;"></div>
 
-</div>
+ </div>
+
 		
 		<script type="text/javascript" src="js/three.min.js"></script>
 		<script async="true" onload="setup();" type="text/javascript" src="js/sphere.js"></script>
@@ -37,3 +38,4 @@
 				});
 			}
 		</script>
+           
