@@ -12,12 +12,12 @@
     <script src="js/sphere.js"></script>
   </head>
   <body>
-    <?php
+    
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Foundation | Welcome</title>
+  <title>Seeit | Photoshèpere</title>
   <link rel="stylesheet" href="css/foundation.css" />
   <link rel="stylesheet" href="css/mycss.css" />
   <script src="js/vendor/modernizr.js"></script>
@@ -42,7 +42,7 @@
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
-        <li class="has-form"> <div class="row collapse"> <div class="large-8 small-9 columns"> <form method="post" action="/seeit/recherche"><input name ="s" type="text" placeholder="Find Stuff"> </div> <div class="large-4 small-3 columns"> <input type="submit" class="alert button expand"/> </div></form> </div> </li>
+        <li class="has-form"> <div class="row collapse"> <div class="large-8 small-9 columns"> <form method="post" action="/seeit/recherche"><input name ="s" type="text" placeholder="Rechercher"> </div> <div class="large-4 small-3 columns"> <input type="submit" class="alert button expand"/> </div></form> </div> </li>
         <li class=""><a href="/seeit/infocompte">Mon compte</a></li>
         <li class=""><a href="/seeit/deconnexion">Déconnexion</a></li>
       </ul>
@@ -81,7 +81,7 @@
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
-       <li class="has-form"> <div class="row collapse"> <div class="large-8 small-9 columns"> <form method="post" action="/seeit/recherche"><input name ="s" type="text" placeholder="Find Stuff"> </div> <div class="large-4 small-3 columns"> <input type="submit" class="alert button expand"/> </div></form> </div> </li>
+       <li class="has-form"> <div class="row collapse"> <div class="large-8 small-9 columns"> <form method="post" action="/seeit/recherche"><input name ="s" type="text" placeholder="Rechercher"> </div> <div class="large-4 small-3 columns"> <input type="submit" class="alert button expand"/> </div></form> </div> </li>
        <li class=""><a href="/seeit/connexion">Connexion</a></li>
      </ul>
 
