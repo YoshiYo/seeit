@@ -18,7 +18,7 @@
         <label>Description : <textarea required name="description"></textarea></label>
       </div>
       <div class="large-4 columns">
-        <label>Select Box
+        <label>Catégorie : 
           <select required name="categorie">
             <option value="paysage">Paysage</option>
             <option value="art">Art</option>

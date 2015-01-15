@@ -30,6 +30,7 @@ if ($this->data["donnees3"]["nb"] != 0){
       <div class="hover_img">
         <a href="/seeit/image?photo_id=<?php echo $donnees["photo_id"]; ?>"><p class="titre"><?php echo $donnees["title"]; ?></p></a>
         <a href="/seeit/addfavoris?photo_id=<?php echo $donnees["photo_id"]; ?>"><div class="fav"><img class="ico_fav" src="img/fav.png" style="width:100%;"></div></a>
+        <a href="/seeit/del?photo_id=<?php echo $donnees["photo_id"]; ?>"><div class="fav"><img class="ico_fav" src="img/del.png" style="width:100%;"></div></a>
       </div>
     </div>
     <?php } ?>

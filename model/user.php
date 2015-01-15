@@ -284,8 +284,7 @@ class User{
 		$requete = $db->prepare("SELECT * from photos WHERE user_id = :user_id");
 		$valeursParam = array(":user_id" => $user_id);
 		$requete->execute($valeursParam);
-		$donnees = $requete ->fetch();
-		return $donnees;
+		return $requete;
 
 		
 	}

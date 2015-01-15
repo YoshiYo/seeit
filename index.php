@@ -120,10 +120,10 @@ $app->post('/inscription', function () use ($app) {
     $user = User::deconnexion();
   });
 
-   $app->post('/recherche', function () use ($app) {
-    $app->render('recherche.php');
-    $recherche = Recherche::search_photo($_POST['s']);
-    $recherche = Recherche::search_user($_POST['s']);
+   $app->post('/recherche', function () use ($app) {    
+    $request = Recherche::search_photo($_POST['s']);
+    $request2 = Recherche::search_user($_POST['s']);
+    $app->render('recherche.php', array('request'=>$request, 'request2'=>$request2));
   });
 
    $app->get('/addfavoris', function () use ($app) {
@@ -142,11 +142,11 @@ $app->post('/inscription', function () use ($app) {
     $requete = Image::galerie3();	
     $app->render('galerie.php', array('donnees3'=>$donnees3, 'requete2'=>$requete2, 'requete'=>$requete));
     
-  });
+  })->name('galerie');
 
    $app->get('/user', function () use ($app) {
-     $donnees = User::userGalerie();
-     $app->render('user.php', array('donnees'=>$donnees));
+     $requete = User::userGalerie();
+     $app->render('user.php', array('requete'=>$requete));
      
    });
 
@@ -179,6 +179,13 @@ $app->post('/inscription', function () use ($app) {
    $app->get('/categorie', function () use ($app) {
      $requete = Image::takeImageCategorie();
      $app->render('categorie.php', array('requete'=>$requete));
+     
+   });
+
+   $app->get('/del', function () use ($app) {
+     $requete = Image::del();
+     $app->render('del.php');
+     $app->redirect($app->urlFor('galerie'));
      
    });
 

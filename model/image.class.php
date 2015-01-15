@@ -214,7 +214,6 @@
     //$requete->execute();
           $requete = $db->prepare('SELECT * FROM photos ORDER BY photo_id DESC');
           $requete->execute();
-          $requete->fetch();
           return $requete;
         }
 
@@ -525,6 +524,22 @@ public function ifFavoris()
   $donnees->execute();
 
 
+}
+
+public static function del()
+{
+  try
+ {
+  $db = new PDO('mysql:host=localhost;dbname=seeit', 'root','');
+  $db->query('SET NAMES utf8');
+}
+catch (Exception $e)
+{
+  die('Erreur : ' . $e->getMessage());
+}
+  $requete = ('DELETE FROM photos WHERE photo_id = '.$_GET['photo_id']);
+  $donnees = $db->prepare($requete);
+  $donnees->execute();
 }
 
 }
