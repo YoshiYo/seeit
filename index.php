@@ -7,6 +7,11 @@
   require_once 'model/recherche.php';
   session_start();
 
+  
+  $app->get('/error', function () use ($app) {
+    $app->flash('error', 'Login required');
+    $app->render('error.twig'); 
+})->name('error');
 
 
   $app = new \Slim\Slim(array(
