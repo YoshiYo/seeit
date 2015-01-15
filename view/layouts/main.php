@@ -103,15 +103,10 @@
   <?php if( isset($_SESSION['admin']) && $_SESSION['admin'] ):?> 
   <li><a href="/seeit/admin">Admin</a></li> 
 <?php endif ?>
-
 </ul>
+
 <?php 
 echo $yield;
-if ($flash['error']): ?>
-<p class="yolo">
-  <?php echo $flash['error'] ?>
-</p>
-<?php endif ?>
 ?>
 
 </body>

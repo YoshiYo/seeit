@@ -71,7 +71,7 @@
     }
     else
     {
-        $app->flash('error', 'User email is required');
+        $app->flash('error', 'L\'adresse email et le mot de passe que vous avez entrés ne correspondent pas à ceux présents dans nos fichiers. Veuillez vérifier et réessayer.');
         $app->redirect($app->urlFor('connexion'));
        
     }
