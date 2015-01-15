@@ -67,12 +67,18 @@
   
 	$app->post('/connexion', function () use ($app) {    
 	$user = User::connexion($_POST['mail'], $_POST['password']);
-    if ($user = true)
+    if ($user == true)
     {
-       // echo "test admin reussi";
+       $app->redirect($app->urlFor('accueil'));  
+    }
+    else
+    {
+        $app->flash('error', 'L\'adresse email et le mot de passe que vous avez entrés ne correspondent pas à ceux présents dans nos fichiers. Veuillez vérifier et réessayer.');
+        $app->redirect($app->urlFor('connexion'));
+       
     }
     $app->render('authentification/connexion.php');
-    $app->redirect($app->urlFor('accueil'));  
+    
 	});
 
   $app->get('/inscription', function () use ($app) {
