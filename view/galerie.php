@@ -34,4 +34,3 @@ if ($this->data["donnees3"]["nb"] != 0){
       </div>
     </div>
     <?php } ?>
-    </html>

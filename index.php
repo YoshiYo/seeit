@@ -154,7 +154,7 @@ $app->post('/inscription', function () use ($app) {
     $donnees = Image::takeOneImage();
     $app->render('image.php', array('donnees'=>$donnees));
     
-    $image = Image::takeAllImage();
+    
   });
 
    $app->get('/importer', function () use ($app) {       
