@@ -7,9 +7,9 @@
     <title>Seeit | Photosphère</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/mycss.css" />
-    <script src="js/vendor/modernizr.js"></script>
     <script src="js/three.min.js"></script>
     <script src="js/sphere.js"></script>
+    <script src="js/vendor/modernizr.js"></script>
   </head>
   <body>
   <?php
@@ -108,6 +108,10 @@
 <?php 
 echo $yield;
 ?>
-
+ <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
 </body>
 </html>

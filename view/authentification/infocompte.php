@@ -10,7 +10,7 @@ if (!empty($_SESSION['utilisateur_id']))
 			<div id='infocompte' class='columns small-12 large-12 center'>
 				<strong>Votre nom : </strong><?php echo $this->data["row"]["last_name"];?></br>
 				<strong>Votre prenom : </strong><?php echo $this->data["row"]["first_name"];?></br>
-				<strong>Votre mail : </strong><?php $this->data["row"]["mail"];?></br>
+				<strong>Votre mail : </strong><?php echo $this->data["row"]["mail"];?></br>
 			</div>
 			<a href='/seeit/modifiercompte' class='button expand' style='margin-top: 68px' >Modification du compte</a>
 		</div>
